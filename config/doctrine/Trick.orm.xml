@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    <entity name="App\Entity\Trick" table="lj_trick" repository-class="App\Repository\TrickRepository">
+        <id name="id" type="uuid"  />
+        <field name="title" type="string" length="50" unique="true" />
+        <field name="description" type="text" />
+        <field name="slug" type="string" length="50" unique="true" />
+        <field name="createdAt" column="date_create" type="integer" />
+        <field name="updatedAt" column="date_update" type="integer" nullable="true" />
+    </entity>
+</doctrine-mapping>

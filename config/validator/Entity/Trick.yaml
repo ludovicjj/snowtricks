@@ -1,0 +1,15 @@
+App\Entity\Trick:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: title
+            message: Il éxiste déjà une figure portant ce nom.
+    properties:
+        title:
+            - NotBlank:
+                message: Le champs titre est obligatoire.
+            - Length:
+                max: 50
+                maxMessage: Maximun 50 caractères.
+        description:
+            - NotBlank:
+                message: Le champs description est obligatoire.
