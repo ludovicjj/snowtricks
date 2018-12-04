@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {# Bootstrap CSS #}
+        <link rel="stylesheet" href="{{ asset('library/bootstrap/bootstrap.min.css') }}">
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {# NavBar #}
+        {% include 'layout/navbar.html.twig' %}
+        {% block body %}{% endblock %}
+
+
+        {# JQuery #}
+        <script src="{{ asset('library/jquery.min.js') }}"></script>
+        {# Popper #}
+        <script src="{{ asset('library/popper.min.js') }}"></script>
+        {# Bootstrap JS #}
+        <script src="{{ asset('library/bootstrap/bootstrap.min.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
