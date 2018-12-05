@@ -1,9 +1,4 @@
-App\Entity\Trick:
-    constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
-            fields: title
-            message: Il éxiste déjà une figure portant ce nom.
-
+App\DTO\TrickDTO:
     properties:
         title:
             - NotBlank:
@@ -16,3 +11,4 @@ App\Entity\Trick:
         description:
             - NotBlank:
                 message: Le champs description est obligatoire.
+
