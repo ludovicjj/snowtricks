@@ -8,7 +8,7 @@
         <field name="title" type="string" length="50" unique="true" />
         <field name="description" type="text" />
         <field name="slug" type="string" length="50" unique="true" />
-        <field name="createdAt" column="date_create" type="integer" />
-        <field name="updatedAt" column="date_update" type="integer" nullable="true" />
+        <field name="createdAt" column="date_create" type="datetime" />
+        <field name="updatedAt" column="date_update" type="datetime" nullable="true" />
     </entity>
 </doctrine-mapping>
