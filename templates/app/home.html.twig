@@ -8,8 +8,11 @@
         <p>Ceci est la phrase d'accroche</p>
     </div>
     <div class="container">
-        <h4>
-            Ceci est la page d'accueil
-        </h4>
+        <h2>Liste des figures </h2>
+        <div class="row">
+            {% for trick in tricks %}
+                {{ include('layout/card.html.twig', {'trick': trick}) }}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
