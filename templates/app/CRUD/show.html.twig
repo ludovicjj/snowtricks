@@ -1,7 +1,16 @@
-{% extens 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="jumbotron text-center">
+        <h1>{{ trick.title }}</h1>
+        <p>Mettre l'image de la figure dans le jumbotron (image à la une ?)</p>
+    </div>
     <div class="container">
-
+        <div class="row">
+            <div class="col-12">
+                <h4>Description :</h4>
+                <p>{{ trick.description }}</p>
+            </div>
+        </div>
     </div>
 {% endblock %}
