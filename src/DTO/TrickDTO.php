@@ -14,4 +14,6 @@ class TrickDTO
      * @var string
      */
     public $description;
+
+    public $category;
 }

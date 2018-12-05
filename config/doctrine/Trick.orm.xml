@@ -10,5 +10,6 @@
         <field name="slug" type="string" length="50" unique="true" />
         <field name="createdAt" column="date_create" type="datetime" />
         <field name="updatedAt" column="date_update" type="datetime" nullable="true" />
+        <many-to-one field="category" target-entity="App\Entity\Category" />
     </entity>
 </doctrine-mapping>

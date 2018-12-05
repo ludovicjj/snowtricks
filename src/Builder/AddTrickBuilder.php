@@ -17,7 +17,8 @@ class AddTrickBuilder
         return new trick(
             $trickDTO->title,
             $trickDTO->description,
-            $trickDTO->title
+            $trickDTO->title,
+            $trickDTO->category
         );
     }
 }

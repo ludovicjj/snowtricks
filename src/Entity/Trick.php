@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ludovic
- * Date: 04/12/2018
- * Time: 21:40
- */
 
 namespace App\Entity;
 
@@ -45,16 +39,23 @@ class Trick
     private $updatedAt;
 
     /**
+     * @var Category
+     */
+    private $category;
+
+    /**
      * Trick constructor.
      * @param string $title
      * @param string $description
      * @param string $slug
+     * @param Category $category
      * @throws \Exception
      */
     public function __construct(
         string $title,
         string $description,
-        string $slug
+        string $slug,
+        Category $category
     )
     {
         $this->id = Uuid::uuid4();
@@ -62,6 +63,7 @@ class Trick
         $this->description = $description;
         $this->slug = Slugger::Slug($slug);
         $this->createdAt = new \DateTime();
+        $this->category = $category;
     }
 
     public function getId(): UuidInterface
@@ -92,5 +94,10 @@ class Trick
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
