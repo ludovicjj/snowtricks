@@ -1,11 +1,16 @@
-<div class="col-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="card">
+<div class="col-12 col-sm-6 col-md-4 col-lg-3" style="display:flex;">
+    <div class="card" style="width:100%;">
         <div class="card-body">
             <h5 class="card-title"><a href="{{ path('show_trick', {'slug': trick.slug}) }}">{{ trick.title }}</a></h5>
             <p class="card-text">{{ trick.description }}</p>
         </div>
         <div class="card-footer text-center">
-            <p>{{ trick.category.name }}</p>
+            <a href="{{ path('update_trick', {'slug': trick.slug}) }}" class="btn btn-xs btn-primary">
+                <i class="fas fa-pencil-alt"></i>
+            </a>
+            <a href="#" class="btn btn-xs btn-primary">
+                <i class="fas fa-trash-alt"></i>
+            </a>
         </div>
     </div>
 </div>
