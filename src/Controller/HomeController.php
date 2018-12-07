@@ -14,6 +14,9 @@ class HomeController
      */
     private $twig;
 
+    /**
+     * @var TrickRepository
+     */
     private $trickRepository;
 
     public function __construct(

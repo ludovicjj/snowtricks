@@ -31,4 +31,15 @@ class TrickRepository extends ServiceEntityRepository
     {
         $this->_em->flush();
     }
+
+    /**
+     * @param Trick $trick
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function remove(Trick $trick)
+    {
+        $this->_em->remove($trick);
+        $this->save();
+    }
 }

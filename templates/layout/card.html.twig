@@ -8,9 +8,42 @@
             <a href="{{ path('update_trick', {'slug': trick.slug}) }}" class="btn btn-xs btn-primary">
                 <i class="fas fa-pencil-alt"></i>
             </a>
+            {# Bouton pour declancher la fenetre modal #}
+            <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#deleteTrickModal-{{ trick.id }}">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+
+            {# Fenetre modal #}
+            <div class="modal fade" id="deleteTrickModal-{{ trick.id }}" tabindex="-1" role="dialog" aria-labelledby="trickModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="trickModalCenterTitle">Supprimer la figure</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Vous etes sur le point de supprimer cet article, etes vous sure de continuer ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <form action="{{ path('delete_trick', {'slug': trick.slug}) }}" method="post">
+                                <button type="submit" class="btn btn-primary">Supprimer</button>
+                                <input type="hidden" name="token" value="{{ csrf_token('delete' ~ trick.id) }}" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--
             <a href="#" class="btn btn-xs btn-primary">
                 <i class="fas fa-trash-alt"></i>
             </a>
+            -->
+
         </div>
     </div>
 </div>

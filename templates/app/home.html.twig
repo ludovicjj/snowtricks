@@ -9,6 +9,15 @@
     </div>
     <div class="container">
         <h2>Liste des figures </h2>
+
+        {# Message Flash de succes #}
+        {% for message in app.session.flashBag.get('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
         <div class="row">
             {% for trick in tricks %}
                 {{ include('layout/card.html.twig', {'trick': trick}) }}
