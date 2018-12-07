@@ -66,6 +66,28 @@ class Trick
         $this->category = $category;
     }
 
+    /**
+     * @param string $title
+     * @param string $description
+     * @param string $slug
+     * @param Category $category
+     * @throws \Exception
+     */
+    public function update(
+        string $title,
+        string $description,
+        string $slug,
+        Category $category
+    )
+    {
+        $this->title = $title;
+        $this->description = $description;
+        $this->slug = Slugger::Slug($slug);
+        $this->updatedAt = new \DateTime();
+        $this->category = $category;
+    }
+
+
     public function getId(): UuidInterface
     {
         return $this->id;
