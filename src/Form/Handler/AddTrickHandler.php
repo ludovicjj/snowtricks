@@ -28,6 +28,9 @@ class AddTrickHandler
      */
     private $trickRepository;
 
+    /**
+     * @var SessionInterface
+     */
     private $sessionInterface;
 
     public function __construct(
@@ -51,8 +54,11 @@ class AddTrickHandler
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Creation d'un objet avec les données de TrickDTO = $form->getData()
             $trick = $this->addTrickBuilder->create($form->getData());
 
+            // Vérification des contraintes de l'entité
             $errors = $this->validatorInterface->validate($trick);
 
             if (count($errors) > 0) {
@@ -63,14 +69,23 @@ class AddTrickHandler
                     elseif ($error->getPropertyPath() == 'description') {
                         $form->get('description')->addError(new FormError($error->getMessage()));
                     }
+                    elseif ($error->getPropertyPath() == 'category') {
+                        $form->get('category')->addError(new FormError($error->getMessage()));
+                    }
                 }
 
-               return false;
+                // Containtes de l'entité invalide.
+                // Return false avec les messages d'erreurs dans le formulaire.
+                return false;
             }
+            // Prise en charge de l'objet par doctrine et sauvegarde en BDD.
             $this->trickRepository->persits($trick);
+            // Message flash de reussite a renvoyer à l'utilisateur.
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été rajouté avec succès');
 
+            // Return true.
             return true;
+
         }
 
         return false;

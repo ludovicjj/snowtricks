@@ -12,3 +12,6 @@ App\DTO\TrickDTO:
             - NotBlank:
                 message: Le champs description est obligatoire.
 
+        category:
+            - NotBlank:
+                message: Veuillez choissir une catégorie.

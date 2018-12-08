@@ -43,6 +43,7 @@ class Trick
      */
     private $category;
 
+
     /**
      * Trick constructor.
      * @param string $title

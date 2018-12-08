@@ -2,8 +2,7 @@
 
 namespace App\DTO;
 
-
-use App\Entity\Trick;
+use App\Entity\Category;
 
 class TrickDTO
 {
@@ -17,14 +16,19 @@ class TrickDTO
      */
     public $description;
 
+    /**
+     * @var Category
+     */
     public $category;
 
-    public static function updateTrickDTO(Trick $trick): self
+    public function __construct(
+        string $title = null,
+        string $description = null,
+        Category $category = null
+    )
     {
-        $trickDTO = new self();
-        $trickDTO->title = $trick->getTitle();
-        $trickDTO->description = $trick->getDescription();
-        $trickDTO->category = $trick->getCategory();
-
-        return $trickDTO;
-    }}
+        $this->title = $title;
+        $this->description = $description;
+        $this->category = $category;
+    }
+}

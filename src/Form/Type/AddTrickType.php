@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\DTO\TrickDTO;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -26,6 +27,8 @@ class AddTrickType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'multiple' => false,
+                'expanded' => false,
+                'required' => false,
             ])
         ;
     }
@@ -33,7 +36,14 @@ class AddTrickType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TrickDTO::class
+            'data_class' => TrickDTO::class,
+            'empty_data' => function (FormInterface $form) {
+                return new TrickDTO(
+                    $form->get('title')->getData(),
+                    $form->get('description')->getData(),
+                    $form->get('category')->getData()
+                );
+            }
         ]);
     }
 

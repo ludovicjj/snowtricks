@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Form\Handler\AddTrickHandler;
 use App\Form\Type\AddTrickType;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 class AddTrickController
@@ -27,15 +29,22 @@ class AddTrickController
      */
     private $addTrickHandler;
 
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
     public function __construct(
         Environment $twig,
         FormFactoryInterface $formFactory,
-        AddTrickHandler $addTrickHandler
+        AddTrickHandler $addTrickHandler,
+        UrlGeneratorInterface $urlGenerator
     )
     {
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->addTrickHandler = $addTrickHandler;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -52,7 +61,12 @@ class AddTrickController
     {
         $form = $this->formFactory->create(AddTrickType::class)->handleRequest($request);
 
-        $this->addTrickHandler->handle($form);
+        if ($this->addTrickHandler->handle($form)) {
+            // Redirection vers la home page si la prise en charge du formulaire renvoi true.
+            return new RedirectResponse(
+                $this->urlGenerator->generate('home')
+            );
+        }
 
         return new Response(
             $this->twig->render('App/CRUD/add.html.twig', [
