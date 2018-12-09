@@ -15,12 +15,12 @@ class Image
     /**
      * @var string
      */
-    private $path;
+    private $imagePath;
 
     /**
      * @var string
      */
-    private $filename;
+    private $imageName;
 
     /**
      * @var string
@@ -29,50 +29,41 @@ class Image
 
     /**
      * Image constructor.
-     * @param string $path
-     * @param string $filename
+     * @param string $imageName
+     * @param string $imagePath
      * @param string $alt
      * @throws \Exception
      */
     public function __construct(
-        string $path,
-        string $filename,
+        string $imageName,
+        string $imagePath,
         string $alt
     )
     {
         $this->id = Uuid::uuid4();
-        $this->path = $path;
-        $this->filename = $filename;
+        $this->imageName = $imageName;
+        $this->imagePath = $imagePath;
         $this->alt = $alt;
     }
 
-    public function setPath(string $path): void
-    {
-        $this->path = $path;
-    }
 
     public function getId(): UuidInterface
     {
         return $this->id;
     }
 
-    public function getPath(): string
+    public function getImageName(): string
     {
-        return $this->path;
+        return $this->imageName;
     }
 
-    public function getFilename(): string
+    public function getImagePath(): string
     {
-        return $this->filename;
+        return $this->imagePath;
     }
 
     public function getAlt(): string
     {
         return $this->alt;
-    }
-
-    public function getWebPath(): string
-    {
-        return $this->path .'/'. $this->filename;
     }
 }

@@ -21,14 +21,21 @@ class TrickDTO
      */
     public $category;
 
+    /**
+     * @var array
+     */
+    public $images;
+
     public function __construct(
         string $title = null,
         string $description = null,
-        Category $category = null
+        Category $category = null,
+        array $images = null
     )
     {
         $this->title = $title;
         $this->description = $description;
         $this->category = $category;
+        $this->images = $images;
     }
 }

@@ -7,6 +7,13 @@ use App\DTO\TrickDTO;
 
 class AddTrickBuilder
 {
+    private $imageBuilder;
+
+    public function __construct(ImageBuilder $imageBuilder)
+    {
+        $this->imageBuilder = $imageBuilder;
+    }
+
     /**
      * @param TrickDTO $trickDTO
      * @return Trick
@@ -18,7 +25,8 @@ class AddTrickBuilder
             $trickDTO->title,
             $trickDTO->description,
             $trickDTO->title,
-            $trickDTO->category
+            $trickDTO->category,
+            $this->imageBuilder->create($trickDTO->images)
         );
     }
 }

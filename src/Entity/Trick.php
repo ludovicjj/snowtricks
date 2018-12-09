@@ -5,6 +5,7 @@ namespace App\Entity;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use App\Service\Slugger;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Trick
 {
@@ -43,6 +44,10 @@ class Trick
      */
     private $category;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $images;
 
     /**
      * Trick constructor.
@@ -50,13 +55,15 @@ class Trick
      * @param string $description
      * @param string $slug
      * @param Category $category
+     * @param array $images
      * @throws \Exception
      */
     public function __construct(
         string $title,
         string $description,
         string $slug,
-        Category $category
+        Category $category,
+        array $images = []
     )
     {
         $this->id = Uuid::uuid4();
@@ -65,6 +72,7 @@ class Trick
         $this->slug = Slugger::Slug($slug);
         $this->createdAt = new \DateTime();
         $this->category = $category;
+        $this->images = new ArrayCollection($images);
     }
 
     /**
@@ -119,8 +127,13 @@ class Trick
         return $this->updatedAt;
     }
 
-    public function getCategory()
+    public function getCategory(): Category
     {
         return $this->category;
+    }
+
+    public function getImages()
+    {
+        return $this->images;
     }
 }

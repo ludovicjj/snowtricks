@@ -4,11 +4,12 @@ namespace App\Form\Type;
 
 use App\Entity\Category;
 use App\DTO\TrickDTO;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -29,6 +30,17 @@ class AddTrickType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'required' => false,
+            ])
+            ->add('images', CollectionType::class, [
+                'entry_type' => ImageType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'entry_options' => [
+                    'required' => false,
+                    'label' => false
+                ]
             ])
         ;
     }

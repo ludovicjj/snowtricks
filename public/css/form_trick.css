@@ -1,0 +1,21 @@
+.trick .label-file img {
+    width: 100%;
+    height: auto;
+}
+.image-container label  {
+    display: flex;
+    align-items: center;
+}
+.trick .input-file {
+    display: none;
+}
+.trick .label-file {
+    cursor: pointer;
+}
+.image-control {
+    margin-top: 0.5rem;
+}
+.image-container .form-control {
+    padding-bottom: 0.5rem;
+    height: auto;
+}

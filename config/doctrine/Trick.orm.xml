@@ -13,5 +13,20 @@
 
         <many-to-one field="category" target-entity="App\Entity\Category" />
 
+        <many-to-many field="images" target-entity="App\Entity\Image" >
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+            <join-table name="lj_tricks_images">
+                <join-columns>
+                    <join-column name="trick_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="image_id" referenced-column-name="id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
     </entity>
 </doctrine-mapping>

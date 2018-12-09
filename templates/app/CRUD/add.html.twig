@@ -2,10 +2,71 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
+{% import 'app/CRUD/macro/image_macro.html.twig' as formImage %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/form_trick.css') }}">
+{% endblock %}
+
+
 {% block body %}
     <div class="container mt-4">
 
-        {{ include('layout/trick_form.html.twig', {form: form, button: 'Ajouter'}) }}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'trick'}}) }}
 
+        <div class="form-row">
+            <div class="col-md-8">
+                <div class="col-md-12 form-group">
+                    {# Title #}
+                    {{ form_row(form.title) }}
+                </div>
+
+                <div class="col-md-12 form-group">
+                    {# Description #}
+                    {{ form_row(form.description) }}
+                </div>
+
+                <div class="col-md-12 form-group">
+                    {# Category #}
+                    {{ form_row(form.category) }}
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            {# Images #}
+            <div class="col-md-8">
+                <div class="form-row form-group col-12">
+                    {{ form_label(form.images, 'Images') }}
+                </div>
+
+                <div class="form-row col-12 text-center wrapper"
+                     data-prototype="{{ formImage.imageRow(form.images.vars.prototype)|e('html_attr') }}"
+                     data-index="{{ form.images|length }}">
+
+                    {% if form.images|length == 0 %}
+                        <div class="col-6 col-sm-4 col-md-4 image-container image-reader">
+                            {{ formImage.imageRow(form.images) }}
+                        </div>
+                    {% else %}
+                        {% for image in form.images %}
+                            {{ formImage.imageRow(image) }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12" style="margin-left:15px;">
+                <button type="submit" class="btn-secondary btn mt-2">
+                    Rajouter
+                </button>
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/form_trick.js') }}"></script>
 {% endblock %}

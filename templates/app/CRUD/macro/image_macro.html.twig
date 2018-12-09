@@ -1,0 +1,26 @@
+{% macro imageRow(image) %}
+    {% if image.vars.value.file.pathname is defined %}
+        {% set path = image.vars.value.file.pathname %}
+        {% set alt = 'snowtricks-image' %}
+    {% else %}
+        {% set path = 'image/default-image.png' %}
+        {% set alt = 'default-image' %}
+    {% endif %}
+
+    {{ form_errors(image) }}
+    <div class="col-6 col-sm-4 col-md-4 image-container image-reader">
+        <div class="form-control form-group">
+            <label for="{{ image.vars.id }}_file" class="label-file">
+                <img src="{{ asset( path ) }}" alt="{{ alt }}" class="img-fluid">
+            </label>
+            {{ form_widget(image, {
+                'attr': {'class': 'input-file'}
+                })
+            }}
+            <div class="d-flex justify-content-around image-action">
+                <i class="fas fa-trash fa-lg"></i>
+                <i class="fas fa-plus-square fa-lg"></i>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
