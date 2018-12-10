@@ -7,16 +7,17 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class ImageDTO
 {
     /**
-     * @var UploadedFile
+     * @var \SplFileInfo
      */
     public $file;
 
+
     /**
      * ImageDTO constructor.
-     * @param UploadedFile|null $file
+     * @param \SplFileInfo|null $file
      */
     public function __construct(
-        UploadedFile $file = null
+        \SplFileInfo $file = null
     )
     {
         $this->file = $file;

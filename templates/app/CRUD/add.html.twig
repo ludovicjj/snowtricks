@@ -15,7 +15,7 @@
         {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'trick'}}) }}
 
         <div class="form-row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="col-md-12 form-group">
                     {# Title #}
                     {{ form_row(form.title) }}
@@ -34,24 +34,27 @@
         </div>
         <div class="form-row">
             {# Images #}
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="form-row form-group col-12">
                     {{ form_label(form.images, 'Images') }}
                 </div>
 
-                <div class="form-row col-12 text-center wrapper"
+                <div class="form-row col-12 wrapper"
                      data-prototype="{{ formImage.imageRow(form.images.vars.prototype)|e('html_attr') }}"
                      data-index="{{ form.images|length }}">
-
+                    <a href="#" class="js-genus-scientist-add">
+                        <span class="fa fa-plus-circle"></span>
+                        Ajouter une image
+                    </a>
+                    <!-- Genere un premier champs pour arreter le form_rest-->
                     {% if form.images|length == 0 %}
-                        <div class="col-6 col-sm-4 col-md-4 image-container image-reader">
-                            {{ formImage.imageRow(form.images) }}
-                        </div>
+                        {{ formImage.imageRow(form.images) }}
                     {% else %}
-                        {% for image in form.images %}
-                            {{ formImage.imageRow(image) }}
-                        {% endfor %}
                     {% endif %}
+                    {% for image in form.images %}
+                            {{ formImage.imageRow(image) }}
+                    {% endfor %}
+
                 </div>
             </div>
         </div>

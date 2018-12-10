@@ -3,48 +3,60 @@
 namespace App\Service;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
     private $imageDirectory;
+    private $imageUploadPath;
+    /**
+     * @var string
+     */
+    private $filename;
 
     /**
      * @var string
      */
-    private $imageName;
-
-    /**
-     * @var string
-     */
-    private $imagePath;
+    private $path;
 
     /**
      * @var string
      */
     private $alt;
 
-    public function __construct($imageDirectory)
+    public function __construct(
+        $imageDirectory,
+        $imageUploadPath
+    )
     {
         $this->imageDirectory = $imageDirectory;
+        $this->imageUploadPath = $imageUploadPath;
     }
 
-    public function getImageInfo(UploadedFile $file)
+    public function getImageInfo(\SplFileInfo $file)
     {
-        $this->imageName = md5(uniqid()).'.'.$file->guessExtension();
-        $this->imagePath = $this->imageDirectory .'/'. $this->imageName;
+        // class File extends SplFileInfo
+        // class UploadedFile extends File
+
+        $this->filename = md5(uniqid()).'.'.$file->guessExtension();
+
+        // Chemin absolus:
+        //$this->imagePath = $this->imageDirectory .'/'. $this->imageName;
+
+        // Chemin relatif:
+        $this->path = $this->imageUploadPath .'/'. $this->filename;
         $this->alt = strtolower(str_replace(' ', '-', $file->getClientOriginalName()));
 
         try {
-            $file->move($this->imageDirectory, $this->imageName);
+            // Déplace l'image dans le repertoire '%kernel.project_dir%/public/uploads/images'
+            $file->move($this->imageDirectory, $this->filename);
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }
 
 
         return [
-            'imageName' => $this->imageName,
-            'imagePath' => $this->imagePath,
+            'filename' => $this->filename,
+            'path' => $this->path,
             'alt' => $this->alt
         ];
     }

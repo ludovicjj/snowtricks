@@ -88,6 +88,7 @@ class UpdateTrickController
         // Hydratation du DTO avec les données de l'objet (remplace la méthode static)
         $trickDTO = $this->trickDTOFactory->create($trick);
 
+
         // Création du form avec trickDTO donc utilise "data_class" et plus "empty_data".
         // Le formulaire sera donc pré-rempli normalement.
         // UpdateTrickType est pour l'instant un simple extend de TrickType sans aucune modif.

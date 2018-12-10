@@ -46,8 +46,8 @@ class ImageBuilder
         $info =  $this->fileUploader->getImageInfo($imageDTO->file);
 
         return new Image(
-            $info['imageName'],
-            $info['imagePath'],
+            $info['filename'],
+            $info['path'],
             $info['alt']
         );
     }

@@ -28,4 +28,5 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Service\FileUploader:
         arguments:
+            $imageUploadPath: '/uploads/images'
             $imageDirectory: '%images_directory%'

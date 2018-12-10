@@ -53,7 +53,8 @@ class AddTrickType extends AbstractType
                 return new TrickDTO(
                     $form->get('title')->getData(),
                     $form->get('description')->getData(),
-                    $form->get('category')->getData()
+                    $form->get('category')->getData(),
+                    $form->get('images')->getData()
                 );
             }
         ]);

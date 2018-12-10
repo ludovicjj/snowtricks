@@ -63,7 +63,8 @@ class UpdateTrickHandler
     public function handle(FormInterface $form, Trick $trick): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            // Modification des donné dans l'objet
+
+            // Modification des données dans l'objet
             $trick = $this->updateTrickBuilder->update($form->getData(), $trick);
 
             // Vérification des contraintes de l'objet

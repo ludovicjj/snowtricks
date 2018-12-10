@@ -83,7 +83,7 @@ class AddTrickHandler
             // Message flash de reussite a renvoyer à l'utilisateur.
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été rajouté avec succès');
 
-            // Return true.
+            // Formulaire valide.
             return true;
 
         }

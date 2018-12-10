@@ -19,3 +19,10 @@
     padding-bottom: 0.5rem;
     height: auto;
 }
+.js-genus-scientist-add {
+    margin-bottom: 1em;
+    width:100%;
+}
+#add_image .fa-plus-square {
+    margin-right: 15px;
+}
