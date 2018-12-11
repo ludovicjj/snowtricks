@@ -26,3 +26,12 @@
 #add_image .fa-plus-square {
     margin-right: 15px;
 }
+.img-preview-upload {
+    margin-bottom: 5px;
+    width:100%;
+    height: 200px;
+    object-fit: cover;
+}
+.image-delete-message{
+    display:none;
+}

@@ -64,10 +64,8 @@ class UpdateTrickHandler
     {
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Modification des données dans l'objet
             $trick = $this->updateTrickBuilder->update($form->getData(), $trick);
 
-            // Vérification des contraintes de l'objet
             $errors = $this->validatorInterface->validate($trick);
 
             if (count($errors) > 0) {
@@ -83,14 +81,10 @@ class UpdateTrickHandler
                     }
                 }
 
-                // Les contraintes de l'objet ne sont pas valides
-                // Renvoi les messages d'erreurs au formulaire.
-
                 return false;
             }
-            // Enregistrement des modification sur l'objet.
+
             $this->trickRepository->save();
-            // Message flash de reussite a retourner à l'utilisateur.
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été modifiée avec succès');
 
             return true;

@@ -6,8 +6,16 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class FileUploader
 {
+    /**
+     * @var string
+     */
     private $imageDirectory;
+
+    /**
+     * @var string
+     */
     private $imageUploadPath;
+
     /**
      * @var string
      */
@@ -24,8 +32,8 @@ class FileUploader
     private $alt;
 
     public function __construct(
-        $imageDirectory,
-        $imageUploadPath
+        string $imageDirectory,
+        string $imageUploadPath
     )
     {
         $this->imageDirectory = $imageDirectory;
@@ -34,25 +42,15 @@ class FileUploader
 
     public function getImageInfo(\SplFileInfo $file)
     {
-        // class File extends SplFileInfo
-        // class UploadedFile extends File
-
         $this->filename = md5(uniqid()).'.'.$file->guessExtension();
-
-        // Chemin absolus:
-        //$this->imagePath = $this->imageDirectory .'/'. $this->imageName;
-
-        // Chemin relatif:
         $this->path = $this->imageUploadPath .'/'. $this->filename;
         $this->alt = strtolower(str_replace(' ', '-', $file->getClientOriginalName()));
 
         try {
-            // Déplace l'image dans le repertoire '%kernel.project_dir%/public/uploads/images'
             $file->move($this->imageDirectory, $this->filename);
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }
-
 
         return [
             'filename' => $this->filename,

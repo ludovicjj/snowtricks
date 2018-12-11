@@ -30,22 +30,63 @@
                     {{ form_row(form.category) }}
                 </div>
             </div>
+        </div><!--/row-->
+
+        <div class="form-row">
+            {# Uploaded Image #}
+            <div class="col-md-8">
+                <div class="col-12 form-row form-group">
+                    <span>Images de la figure {{ trick.title }}</span>
+                </div>
+
+                <div class="form-row col-md-12">
+                    <div class="col-12">
+                        <div class="alert alert-success image-delete-message"></div>
+                    </div>
+
+                    {% set foo = "no-image" %}
+                    {% for image in trick.images %}
+                        {% set foo = "has-image" %}
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 image-upload" style="display:flex;">
+                            <div class="form-control form-group container-ajax" style="height: auto;">
+                                <img src="{{ asset( image.path ) }}" alt="{{ image.alt }}" class="img-fluid img-preview-upload">
+                                <div class="d-flex justify-content-around">
+
+                                    <a data-url="{{ path('delete_images', {'id_image': image.id, 'id_trick': trick.id}) }}" href=""
+                                       title="Supprimer"
+                                       class="link-ajax btn btn-primary"
+                                    >
+                                        Supprimer
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if foo is same as("no-image") %}
+                        <div class="alert alert-primary col-12 text-center" role="alert">
+                            Il n'y a pour l'instant aucune image pour cette figure.<br/>
+                            Utiliser la section ci-dessous pour en rajouter.
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
         </div>
+
         <div class="form-row">
             {# Images #}
             <div class="col-md-8">
-                <div class="form-row form-group col-12">
-                    {{ form_label(form.images, 'Images') }}
-                </div>
-
-                <div class="form-row col-12 text-center wrapper"
+                <div class="form-row col-12 wrapper"
                      data-prototype="{{ formImage.imageRow(form.images.vars.prototype)|e('html_attr') }}"
                      data-index="{{ form.images|length }}">
+                    <a href="#" class="js-genus-scientist-add">
+                        <span class="fa fa-plus-circle"></span>
+                        Ajouter une image
+                    </a>
 
                     {% if form.images|length == 0 %}
-                        <div class="col-6 col-sm-4 col-md-4 image-container image-reader">
-                            {{ formImage.imageRow(form.images) }}
-                        </div>
+                        {{ formImage.imageRow(form.images) }}
                     {% else %}
                         {% for image in form.images %}
                             {{ formImage.imageRow(image) }}

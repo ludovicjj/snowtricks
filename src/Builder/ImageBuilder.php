@@ -2,13 +2,15 @@
 
 namespace App\Builder;
 
-
 use App\DTO\ImageDTO;
 use App\Entity\Image;
 use App\Service\FileUploader;
 
 class ImageBuilder
 {
+    /**
+     * @var FileUploader
+     */
     private $fileUploader;
 
     public function __construct(
@@ -28,7 +30,12 @@ class ImageBuilder
         $imagesCollection = [];
 
         foreach ($images as $image) {
+            /*
             if (null !== $image->file) {
+                $imagesCollection[] = $this->createImage($image);
+            }
+            */
+            if (null !== $image) {
                 $imagesCollection[] = $this->createImage($image);
             }
         }

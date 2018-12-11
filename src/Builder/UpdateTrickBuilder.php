@@ -9,6 +9,15 @@ class UpdateTrickBuilder
 {
     private $trick;
 
+    private $imageBuilder;
+
+    public function __construct(
+        ImageBuilder $imageBuilder
+    )
+    {
+        $this->imageBuilder = $imageBuilder;
+    }
+
     /**
      * @param TrickDTO $trickDTO
      * @param Trick $trick
@@ -23,7 +32,8 @@ class UpdateTrickBuilder
             $trickDTO->title,
             $trickDTO->description,
             $trickDTO->title,
-            $trickDTO->category
+            $trickDTO->category,
+            $this->imageBuilder->create($trickDTO->images)
         );
 
         return $this->trick;

@@ -2,6 +2,7 @@
 
 namespace App\Builder;
 
+use App\Repository\ImageRepository;
 use App\Repository\TrickRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
@@ -27,15 +28,22 @@ class DeleteTrickBuilder
      */
     private $trickRepository;
 
+    /**
+     * @var ImageRepository
+     */
+    private $imageRepository;
+
     public function __construct(
         CsrfTokenManagerInterface $csrfTokenManager,
         SessionInterface $sessionInterface,
-        TrickRepository $trickRepository
+        TrickRepository $trickRepository,
+        ImageRepository $imageRepository
     )
     {
         $this->csrfTokenManager = $csrfTokenManager;
         $this->sessionInterface = $sessionInterface;
         $this->trickRepository = $trickRepository;
+        $this->imageRepository = $imageRepository;
     }
 
     /**
@@ -52,6 +60,10 @@ class DeleteTrickBuilder
     {
         if ($this->csrfTokenManager->isTokenValid(new CsrfToken('delete'.$trick->getId()->toString(), $submittedToken))) {
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été supprimée avec succès');
+
+            foreach ($trick->getImages() as $image) {
+                $trick->removeImage($image);
+            }
             $this->trickRepository->remove($trick);
 
             return true;

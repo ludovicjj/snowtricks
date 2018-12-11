@@ -80,13 +80,15 @@ class Trick
      * @param string $description
      * @param string $slug
      * @param Category $category
+     * @param array|null $images
      * @throws \Exception
      */
     public function update(
         string $title,
         string $description,
         string $slug,
-        Category $category
+        Category $category,
+        array $images = null
     )
     {
         $this->title = $title;
@@ -94,8 +96,15 @@ class Trick
         $this->slug = Slugger::Slug($slug);
         $this->updatedAt = new \DateTime();
         $this->category = $category;
+        $this->addImage($images);
     }
 
+    public function addImage($images)
+    {
+        foreach ($images as $image) {
+            $this->images[] = $image;
+        }
+    }
 
     public function getId(): UuidInterface
     {
@@ -135,5 +144,10 @@ class Trick
     public function getImages()
     {
         return $this->images;
+    }
+
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
     }
 }

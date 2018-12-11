@@ -12,4 +12,23 @@ class ImageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Image::class);
     }
+
+    /**
+     * @param Image $image
+     * @throws \Doctrine\ORM\ORMException
+     */
+    public function remove(Image $image): void
+    {
+        $this->_em->remove($image);
+        $this->save();
+    }
+
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save()
+    {
+        $this->_em->flush();
+    }
 }

@@ -13,14 +13,14 @@
 
         <many-to-one field="category" target-entity="App\Entity\Category" />
 
-        <many-to-many field="images" target-entity="App\Entity\Image" >
+        <many-to-many field="images" target-entity="App\Entity\Image" orphan-removal="true" fetch="EXTRA_LAZY">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>
             </cascade>
             <join-table name="lj_tricks_images">
                 <join-columns>
-                    <join-column name="trick_id" referenced-column-name="id"/>
+                    <join-column name="trick_id" referenced-column-name="id" />
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="image_id" referenced-column-name="id" />
