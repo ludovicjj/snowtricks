@@ -7,7 +7,7 @@
     align-items: center;
 }
 .trick .custom-file {
-    /*display: none;*/
+    display: none;
 }
 .trick .label-file {
     cursor: pointer;
