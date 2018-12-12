@@ -43,6 +43,7 @@
                         <span class="fa fa-plus-circle"></span>
                         Ajouter une image
                     </a>
+                    {{ form_errors(form.images) }}
                     <!-- Genere un premier champs pour arreter le form_rest-->
                     {% if form.images|length == 0 %}
                         {{ formImage.imageRow(form.images) }}

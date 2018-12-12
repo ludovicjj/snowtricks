@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ImageRepository;
 use App\Repository\TrickRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use App\Service\FileDelete;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,19 +13,18 @@ class DeleteImageController
 {
     private $imageRepository;
     private $trickRepository;
-    private $manager;
+    private $fileDelete;
 
     public function __construct(
         ImageRepository $imageRepository,
         TrickRepository $trickRepository,
-        ObjectManager $manager
+        FileDelete $fileDelete
     )
     {
         $this->imageRepository = $imageRepository;
         $this->trickRepository = $trickRepository;
-        $this->manager = $manager;
+        $this->fileDelete = $fileDelete;
     }
-
 
     /**
      * @Route("/delete/image/{id_image}/{id_trick}", methods="DELETE", name="delete_images")
@@ -41,13 +40,13 @@ class DeleteImageController
         /* @var \App\Entity\Trick $trick */
         $trick = $this->trickRepository->findOneBy(['id' => $request->attributes->get('id_trick')]);
 
-        // Trick
+        // Clean table "trick" and table d'assosiation "tricks_images (cascade)
         $trick->removeImage($image);
         $this->trickRepository->save();
 
-        // Image
+        // Supprime l'image et clean la table "image"
+        $this->fileDelete->delete($image);
         $this->imageRepository->remove($image);
-        $this->imageRepository->save();
 
         return new Response(
             json_encode(

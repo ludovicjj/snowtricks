@@ -15,3 +15,6 @@ App\DTO\TrickDTO:
         category:
             - NotBlank:
                 message: Veuillez choissir une catégorie.
+
+        images:
+            - Valid:

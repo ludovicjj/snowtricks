@@ -1,0 +1,8 @@
+App\DTO\ImageDTO:
+    properties:
+        file:
+            - Image:
+                mimeTypes:
+                    - 'image/jpg'
+                    - 'image/jpeg'
+                mimeTypesMessage: Format non valide (jpg, png, jpeg).

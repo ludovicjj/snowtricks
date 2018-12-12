@@ -52,6 +52,7 @@ class AddTrickHandler
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
+            /*
 
             $trick = $this->addTrickBuilder->create($form->getData());
 
@@ -77,8 +78,8 @@ class AddTrickHandler
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été rajouté avec succès');
 
             return true;
+            */
         }
-
         return false;
     }
 }

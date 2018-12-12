@@ -13,7 +13,7 @@
 
         <many-to-one field="category" target-entity="App\Entity\Category" />
 
-        <many-to-many field="images" target-entity="App\Entity\Image" orphan-removal="true" fetch="EXTRA_LAZY">
+        <many-to-many field="images" target-entity="App\Entity\Image">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>

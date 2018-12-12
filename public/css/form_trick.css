@@ -6,8 +6,8 @@
     display: flex;
     align-items: center;
 }
-.trick .input-file {
-    display: none;
+.trick .custom-file {
+    /*display: none;*/
 }
 .trick .label-file {
     cursor: pointer;
@@ -22,9 +22,6 @@
 .js-genus-scientist-add {
     margin-bottom: 1em;
     width:100%;
-}
-#add_image .fa-plus-square {
-    margin-right: 15px;
 }
 .img-preview-upload {
     margin-bottom: 5px;

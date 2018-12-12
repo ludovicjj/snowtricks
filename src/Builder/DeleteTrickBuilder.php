@@ -4,6 +4,7 @@ namespace App\Builder;
 
 use App\Repository\ImageRepository;
 use App\Repository\TrickRepository;
+use App\Service\FileDelete;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Csrf\CsrfToken;
@@ -33,17 +34,24 @@ class DeleteTrickBuilder
      */
     private $imageRepository;
 
+    /**
+     * @var FileDelete
+     */
+    private $fileDelete;
+
     public function __construct(
         CsrfTokenManagerInterface $csrfTokenManager,
         SessionInterface $sessionInterface,
         TrickRepository $trickRepository,
-        ImageRepository $imageRepository
+        ImageRepository $imageRepository,
+        FileDelete $fileDelete
     )
     {
         $this->csrfTokenManager = $csrfTokenManager;
         $this->sessionInterface = $sessionInterface;
         $this->trickRepository = $trickRepository;
         $this->imageRepository = $imageRepository;
+        $this->fileDelete = $fileDelete;
     }
 
     /**
@@ -62,7 +70,13 @@ class DeleteTrickBuilder
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été supprimée avec succès');
 
             foreach ($trick->getImages() as $image) {
+                // Supprime l'image
+                $this->fileDelete->delete($image);
+                // Clean table d'assosiation "tricks_images
                 $trick->removeImage($image);
+                // Cascade n'impacte pas la table "image"
+                // Clean la table image
+                $this->imageRepository->remove($image);
             }
             $this->trickRepository->remove($trick);
 
