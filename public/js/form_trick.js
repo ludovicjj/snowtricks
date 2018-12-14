@@ -1,7 +1,21 @@
 let $wrapper = $('.wrapper');
+let $collectionHolder;
+let $linkVideo;
+
 $(document).ready(function() {
-    // Supprime le premier champs pour feinter le form_rest
-    // et regle le probleme du manque d'imput type file non incrémenté
+    let $collectionHolder = $('.wrapper-video');
+    let $linkVideo = $('.video-add');
+    if ($collectionHolder.find(':input').length === 0) {
+        addVideo($collectionHolder, $linkVideo);
+    }
+
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+    $linkVideo.on('click', function(e){
+        e.preventDefault();
+        addVideo($collectionHolder, $linkVideo);
+    });
+
 
     let $containerImage = $(".image-container");
     let first = $containerImage.attr("class");
@@ -13,9 +27,53 @@ $(document).ready(function() {
         $wrapper.data('index', index + 1);
         $('.js-genus-scientist-add').after(newForm);
     }
+
+
+
+
 });
 
-// Evenemnt click pour ajouter un form
+function addVideo($collectionHolder, $linkVideo) {
+    var prototype = $collectionHolder.data('prototype');
+    var index = $collectionHolder.data('index');
+    var newForm = prototype;
+    newForm = newForm.replace(/__name__label/g, index).replace(/__name__/g, index);
+    $collectionHolder.data('index', index + 1);
+    $linkVideo.next().append(newForm);
+}
+
+
+
+// Evenemnt click pour ajouter un form video
+/*
+$(document).on('click', '.video-add', function(e) {
+    e.preventDefault();
+
+    let collectionHolder = $('.wrapper-video');
+    let indexVideo = wrapperVideo.data('index');
+    let prototypeVideo = wrapperVideo.data('prototype');
+
+    let newFormVideo = prototypeVideo
+        .replace(/__name__label__/g, indexVideo)
+        .replace(/__name__/g, indexVideo);
+
+    wrapperVideo.data('index', indexVideo + 1);
+
+    $(this).next().append(newFormVideo);
+
+
+    let containerVideo = $wrapperVideo.data('prototype');
+    let indexVideo = $wrapperVideo.data('index');
+    containerVideo.attr('data-prototype').replace(/__name__label__/g, 'Catégorie n°' + (indexVideo+1));
+    let newFormVideo = containerVideo.replace(/__name__/g, indexVideo);
+    //Incrémantation
+    $wrapperVideo.data('index', indexVideo + 1);
+    $(this).next().append(newFormVideo).append(/__name__label__url/g, 'Catégorie n°' + (indexVideo +1));
+
+});
+*/
+
+// Evenemnt click pour ajouter un form image
 $(document).on('click', '.js-genus-scientist-add', function(e) {
     e.preventDefault();
     // Get the data-prototype explained earlier

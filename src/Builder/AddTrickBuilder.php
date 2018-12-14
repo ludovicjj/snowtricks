@@ -9,9 +9,15 @@ class AddTrickBuilder
 {
     private $imageBuilder;
 
-    public function __construct(ImageBuilder $imageBuilder)
+    private $videoBuilder;
+
+    public function __construct(
+        ImageBuilder $imageBuilder,
+        VideoBuilder $videoBuilder
+    )
     {
         $this->imageBuilder = $imageBuilder;
+        $this->videoBuilder = $videoBuilder;
     }
 
     /**
@@ -26,7 +32,8 @@ class AddTrickBuilder
             $trickDTO->description,
             $trickDTO->title,
             $trickDTO->category,
-            $this->imageBuilder->create($trickDTO->images)
+            $this->imageBuilder->create($trickDTO->images),
+            $this->videoBuilder->create($trickDTO->videos)
         );
     }
 }

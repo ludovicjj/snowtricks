@@ -39,7 +39,17 @@ class AddTrickType extends AbstractType
                 'prototype' => true,
                 'entry_options' => [
                     'required' => false,
-                    'label' => false
+                ]
+            ])
+            ->add('videos', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'prototype' => true,
+                'entry_options' => [
+                    'required' => false,
+                    'label' => true
                 ]
             ])
         ;
@@ -54,7 +64,8 @@ class AddTrickType extends AbstractType
                     $form->get('title')->getData(),
                     $form->get('description')->getData(),
                     $form->get('category')->getData(),
-                    $form->get('images')->getData()
+                    $form->get('images')->getData(),
+                    $form->get('videos')->getData()
                 );
             }
         ]);

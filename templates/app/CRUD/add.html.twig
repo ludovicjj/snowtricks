@@ -32,6 +32,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-row">
+            <div class="col-md-12">
+                {# videos #}
+                <div class="form-row col-12 wrapper-video"
+                     data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}"
+                     data-index="{{ form.videos|length }}"
+                >
+                    {% for videos in form.videos %}
+                        {{ form_label(form.videos) }}
+                        {{ form_widget(videos.url) }}
+                    {% endfor %}
+
+                    <a href="#" class="video-add">
+                        <span class="fa fa-plus-circle"></span>
+                        Ajouter une video
+                    </a>
+                    <div class="col-12 container-video" style="border: 1px red solid;"></div>
+
+
+                </div>
+            </div>
+        </div>
+
         <div class="form-row">
             {# Images #}
             <div class="col-md-12">

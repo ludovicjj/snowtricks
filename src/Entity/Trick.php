@@ -50,12 +50,18 @@ class Trick
     private $images;
 
     /**
+     * @var ArrayCollection
+     */
+    private $videos;
+
+    /**
      * Trick constructor.
      * @param string $title
      * @param string $description
      * @param string $slug
      * @param Category $category
      * @param array $images
+     * @param array $videos
      * @throws \Exception
      */
     public function __construct(
@@ -63,7 +69,8 @@ class Trick
         string $description,
         string $slug,
         Category $category,
-        array $images = []
+        array $images = [],
+        array $videos = []
     )
     {
         $this->id = Uuid::uuid4();
@@ -73,6 +80,12 @@ class Trick
         $this->createdAt = new \DateTime();
         $this->category = $category;
         $this->images = new ArrayCollection($images);
+        $this->videos = new ArrayCollection($videos);
+
+        // Liaison trick-Video
+        foreach ($videos as $video) {
+            $video->definedTrick($this);
+        }
     }
 
     /**
@@ -144,6 +157,11 @@ class Trick
     public function getImages()
     {
         return $this->images;
+    }
+
+    public function getVideos()
+    {
+        return $this->videos;
     }
 
     public function removeImage(Image $image)

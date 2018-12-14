@@ -20,13 +20,20 @@
             </cascade>
             <join-table name="lj_tricks_images">
                 <join-columns>
-                    <join-column name="trick_id" referenced-column-name="id" />
+                    <join-column name="trick_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </join-columns>
                 <inverse-join-columns>
-                    <join-column name="image_id" referenced-column-name="id" />
+                    <join-column name="image_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+
+        <one-to-many field="videos" target-entity="App\Entity\Video" mapped-by="trick">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
 
     </entity>
 </doctrine-mapping>

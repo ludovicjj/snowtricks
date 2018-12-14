@@ -69,14 +69,18 @@ class DeleteTrickBuilder
         if ($this->csrfTokenManager->isTokenValid(new CsrfToken('delete'.$trick->getId()->toString(), $submittedToken))) {
             $this->sessionInterface->getFlashBag()->add('success', 'La figure a été supprimée avec succès');
 
+//            foreach ($trick->getImages() as $image) {
+//                // Supprime l'image
+//                $this->fileDelete->delete($image);
+//                // Clean table d'assosiation "tricks_images
+//                $trick->removeImage($image);
+//                // Cascade n'impacte pas la table "image"
+//                // Clean la table image
+//                $this->imageRepository->remove($image);
+//            }
+            // supprime les images
             foreach ($trick->getImages() as $image) {
-                // Supprime l'image
                 $this->fileDelete->delete($image);
-                // Clean table d'assosiation "tricks_images
-                $trick->removeImage($image);
-                // Cascade n'impacte pas la table "image"
-                // Clean la table image
-                $this->imageRepository->remove($image);
             }
             $this->trickRepository->remove($trick);
 
