@@ -37,6 +37,7 @@ class AddTrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'prototype' => true,
+                'label' => false,
                 'entry_options' => [
                     'required' => false,
                 ]
@@ -47,9 +48,9 @@ class AddTrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'prototype' => true,
+                'label' => false,
                 'entry_options' => [
                     'required' => false,
-                    'label' => true
                 ]
             ])
         ;

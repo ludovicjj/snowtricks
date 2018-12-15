@@ -11,11 +11,15 @@ class UpdateTrickBuilder
 
     private $imageBuilder;
 
+    private $videoUpdateBuilder;
+
     public function __construct(
-        ImageBuilder $imageBuilder
+        ImageBuilder $imageBuilder,
+        VideoUpdateBuilder $videoUpdateBuilder
     )
     {
         $this->imageBuilder = $imageBuilder;
+        $this->videoUpdateBuilder = $videoUpdateBuilder;
     }
 
     /**
@@ -28,12 +32,14 @@ class UpdateTrickBuilder
     {
         $this->trick = $trick;
 
+
         $this->trick->update(
             $trickDTO->title,
             $trickDTO->description,
             $trickDTO->title,
             $trickDTO->category,
-            $this->imageBuilder->create($trickDTO->images)
+            $this->imageBuilder->create($trickDTO->images),
+            $this->videoUpdateBuilder->compare($trickDTO->videos, $trick->getVideos()->toArray())
         );
 
         return $this->trick;

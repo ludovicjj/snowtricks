@@ -2,7 +2,7 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% import 'app/CRUD/macro/image_macro.html.twig' as formImage %}
+{% import 'app/CRUD/macro/custom_form.html.twig' as formMacro %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/form_trick.css') }}">
@@ -13,6 +13,14 @@
     <div class="container mt-4">
 
         {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'trick'}}) }}
+
+        <div class="form-row">
+            <div class="col-12">
+                <div class="col-md-12 page-header">
+                    <h4>Ajouter une figure</h4>
+                </div>
+            </div>
+        </div>
 
         <div class="form-row">
             <div class="col-md-12">
@@ -33,50 +41,49 @@
             </div>
         </div>
 
+        {# videos #}
         <div class="form-row">
             <div class="col-md-12">
-                {# videos #}
+
                 <div class="form-row col-12 wrapper-video"
-                     data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}"
+                     data-prototype="{{ formMacro.customVideoRow(form.videos.vars.prototype)|e('html_attr') }}"
                      data-index="{{ form.videos|length }}"
                 >
-                    {% for videos in form.videos %}
-                        {{ form_label(form.videos) }}
-                        {{ form_widget(videos.url) }}
+                    <div class="col-12">
+                        <a href="#" class="video-add">
+                            <span class="fa fa-plus-circle"></span>
+                            Ajouter une video
+                        </a>
+                    </div>
+
+                    {% for video in form.videos %}
+                        {{ formMacro.customVideoRow(video) }}
                     {% endfor %}
-
-                    <a href="#" class="video-add">
-                        <span class="fa fa-plus-circle"></span>
-                        Ajouter une video
-                    </a>
-                    <div class="col-12 container-video" style="border: 1px red solid;"></div>
-
 
                 </div>
             </div>
         </div>
 
+        {# Images #}
         <div class="form-row">
-            {# Images #}
             <div class="col-md-12">
 
-                <div class="form-row col-12 wrapper"
-                     data-prototype="{{ formImage.imageRow(form.images.vars.prototype)|e('html_attr') }}"
-                     data-index="{{ form.images|length }}">
-                    <a href="#" class="js-genus-scientist-add">
-                        <span class="fa fa-plus-circle"></span>
-                        Ajouter une image
-                    </a>
-                    {{ form_errors(form.images) }}
-                    <!-- Genere un premier champs pour arreter le form_rest-->
-                    {% if form.images|length == 0 %}
-                        {{ formImage.imageRow(form.images) }}
-                    {% else %}
-                    {% endif %}
-                    {% for image in form.images %}
-                            {{ formImage.imageRow(image) }}
-                    {% endfor %}
+                <div class="form-row col-12 wrapper-image"
+                     data-prototype="{{ formMacro.customImageRow(form.images.vars.prototype)|e('html_attr') }}"
+                     data-index="{{ form.images|length }}"
+                >
 
+                    <div class="col-12">
+                        <a href="#" class="image-add">
+                            <span class="fa fa-plus-circle"></span>
+                            Ajouter une image
+                        </a>
+                    </div>
+                    {{ form_errors(form.images) }}
+
+                    {% for image in form.images %}
+                        {{ formMacro.customImageRow(image) }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -86,9 +93,9 @@
                 <button type="submit" class="btn-secondary btn mt-2">
                     Rajouter
                 </button>
-                {{ form_end(form) }}
             </div>
         </div>
+        {{ form_end(form) }}
     </div>
 {% endblock %}
 

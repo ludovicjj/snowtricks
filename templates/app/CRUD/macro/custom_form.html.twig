@@ -1,0 +1,37 @@
+{% macro customImageRow(image) %}
+
+    {% set path = "image/default-image.jpg" %}
+    {% set alt = "default-image" %}
+
+    {{ form_errors(image) }}
+
+    <div class="col-6 col-sm-4 col-md-3 image-container image-reader">
+        {{ form_widget(image) }}
+        <div class="form-control form-group">
+            <label for="{{ image.vars.id }}_file" class="label-file">
+                <img src="{{ asset( path ) }}" alt="{{ alt }}" class="img-fluid">
+            </label>
+            <div class="d-flex justify-content-around image-action">
+                <i class="fas fa-trash fa-lg"></i>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro customVideoRow(video) %}
+    <div class="col-12 video-container">
+        {{ form_label(video.url) }}
+        <div class="form-row form-group">
+            <div class="col-12">
+                <div class="input-group">
+                    {{ form_widget(video.url) }}
+                    <div class="input-group-prepend">
+                        <a href="#" class="remove-video btn btn-secondary">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

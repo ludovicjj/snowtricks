@@ -20,7 +20,7 @@ class VideoBuilder
      * @return array
      * @throws \Exception
      */
-    public function create(array $videos)
+    public function create(array $videos): array
     {
         $collectionVideo = [];
 

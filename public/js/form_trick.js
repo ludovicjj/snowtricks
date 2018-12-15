@@ -1,92 +1,39 @@
-let $wrapper = $('.wrapper');
-let $collectionHolder;
-let $linkVideo;
+let $imageWrapper = $('.wrapper-image');
+let $videoWrapper = $('.wrapper-video');
 
-$(document).ready(function() {
-    let $collectionHolder = $('.wrapper-video');
-    let $linkVideo = $('.video-add');
-    if ($collectionHolder.find(':input').length === 0) {
-        addVideo($collectionHolder, $linkVideo);
-    }
+/* -------------------------- Video -------------------------- */
 
-    $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-    $linkVideo.on('click', function(e){
-        e.preventDefault();
-        addVideo($collectionHolder, $linkVideo);
-    });
-
-
-    let $containerImage = $(".image-container");
-    let first = $containerImage.attr("class");
-    if (first.indexOf("image-container") > -1 && $containerImage.find("input").length === 0) {
-        $containerImage.remove();
-        var prototype = $wrapper.data('prototype');
-        var index = $wrapper.data('index');
-        var newForm = prototype.replace(/__name__/g, index);
-        $wrapper.data('index', index + 1);
-        $('.js-genus-scientist-add').after(newForm);
-    }
-
-
-
-
+// Evenemnt click pour supprimer un Form Video
+$(document).on('click', '.remove-video', function(e) {
+    e.preventDefault();
+    let videoContainer = $(this).closest($(".video-container"));
+    videoContainer.remove();
 });
 
-function addVideo($collectionHolder, $linkVideo) {
-    var prototype = $collectionHolder.data('prototype');
-    var index = $collectionHolder.data('index');
-    var newForm = prototype;
-    newForm = newForm.replace(/__name__label/g, index).replace(/__name__/g, index);
-    $collectionHolder.data('index', index + 1);
-    $linkVideo.next().append(newForm);
-}
-
-
-
-// Evenemnt click pour ajouter un form video
-/*
+// Evenement click pour ajouter un form Video
 $(document).on('click', '.video-add', function(e) {
     e.preventDefault();
-
-    let collectionHolder = $('.wrapper-video');
-    let indexVideo = wrapperVideo.data('index');
-    let prototypeVideo = wrapperVideo.data('prototype');
-
-    let newFormVideo = prototypeVideo
-        .replace(/__name__label__/g, indexVideo)
-        .replace(/__name__/g, indexVideo);
-
-    wrapperVideo.data('index', indexVideo + 1);
-
-    $(this).next().append(newFormVideo);
-
-
-    let containerVideo = $wrapperVideo.data('prototype');
-    let indexVideo = $wrapperVideo.data('index');
-    containerVideo.attr('data-prototype').replace(/__name__label__/g, 'Catégorie n°' + (indexVideo+1));
-    let newFormVideo = containerVideo.replace(/__name__/g, indexVideo);
-    //Incrémantation
-    $wrapperVideo.data('index', indexVideo + 1);
-    $(this).next().append(newFormVideo).append(/__name__label__url/g, 'Catégorie n°' + (indexVideo +1));
-
+    let prototype = $videoWrapper.data('prototype');
+    let index = $videoWrapper.data('index');
+    let newFormVideo = prototype.replace(/__name__/g, index);
+    $videoWrapper.data('index' , index + 1);
+    $(this).parent().after(newFormVideo);
 });
-*/
+
+
+/* -------------------------- Image -------------------------- */
 
 // Evenemnt click pour ajouter un form image
-$(document).on('click', '.js-genus-scientist-add', function(e) {
+$(document).on('click', '.image-add', function(e) {
     e.preventDefault();
-    // Get the data-prototype explained earlier
-    let prototype = $wrapper.data('prototype');
-    // get the new index
-    let index = $wrapper.data('index');
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    let newForm = prototype.replace(/__name__/g, index);
-    // increase the index with one for the next item
-    $wrapper.data('index', index + 1);
-    // Display the form in the page before the "new" link
-    $(this).after(newForm);
+    let prototype = $imageWrapper.data('prototype');
+    let index = $imageWrapper.data('index');
+    let newFormImage = prototype
+        .replace(/__name__/g, index)
+        .replace(/__name__label__/g, index)
+    ;
+    $imageWrapper.data('index', index + 1);
+    $(this).parent().after(newFormImage);
 });
 
 /* Evenemnt click pour supprimer un form */
@@ -95,6 +42,21 @@ $(document).on('click', '.fa-trash', function(e) {
     let deleteForm = $(this).closest($(".image-container"));
     deleteForm.remove();
 });
+
+/* Mise à jour de l'image dans le label */
+$(document).on("change", ":input[type=file]", function () {
+    let input = this;
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+    }
+    reader.onload = function (e) {
+        $(input.closest(".image-reader")).find("label img").attr("src", e.target.result);
+    };
+    reader.readAsDataURL(input.files[0]);
+});
+
+/* -------------------------- Ajax -------------------------- */
 
 /* Evement click pour supprimer les image via Ajax */
 $(document).ready(function() {
@@ -117,17 +79,4 @@ $(document).ready(function() {
         let deleteImage = $(this).closest($(".image-upload"));
         deleteImage.remove();
     });
-});
-
-/* Mise à jour de l'image dans le label */
-$(document).on("change", ":input[type=file]", function () {
-    let input = this;
-
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-    }
-    reader.onload = function (e) {
-        $(input.closest(".image-reader")).find("label img").attr("src", e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
 });

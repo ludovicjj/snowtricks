@@ -94,6 +94,7 @@ class Trick
      * @param string $slug
      * @param Category $category
      * @param array|null $images
+     * @param array|null $videos
      * @throws \Exception
      */
     public function update(
@@ -101,7 +102,8 @@ class Trick
         string $description,
         string $slug,
         Category $category,
-        array $images = null
+        array $images = null,
+        array $videos = null
     )
     {
         $this->title = $title;
@@ -110,6 +112,15 @@ class Trick
         $this->updatedAt = new \DateTime();
         $this->category = $category;
         $this->addImage($images);
+        $this->addVideos($videos);
+    }
+
+    public function addVideos(array $videos)
+    {
+        foreach ($videos as $video) {
+            $video->definedTrick($this);
+            $this->videos[] = $video;
+        }
     }
 
     public function addImage($images)
@@ -117,6 +128,11 @@ class Trick
         foreach ($images as $image) {
             $this->images[] = $image;
         }
+    }
+
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
     }
 
     public function getId(): UuidInterface
@@ -162,10 +178,5 @@ class Trick
     public function getVideos()
     {
         return $this->videos;
-    }
-
-    public function removeImage(Image $image)
-    {
-        $this->images->removeElement($image);
     }
 }
