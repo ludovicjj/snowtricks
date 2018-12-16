@@ -12,7 +12,11 @@ class VideoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options = [])
     {
-        $builder->add('url', TextType::class);
+        $builder->add('url', TextType::class, [
+            'attr' => [
+                'placeholder' => 'Url d\'une vidéo Youtube ou  DailyMotion.'
+            ]
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -20,9 +20,15 @@ class AddTrickType extends AbstractType
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Titre',
+                'attr' => [
+                    'placeholder' => 'Titre de la figure'
+                ]
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
+                'attr' => [
+                    'placeholder' => 'Description de la figure'
+                ]
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
