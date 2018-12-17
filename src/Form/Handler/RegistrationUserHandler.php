@@ -12,10 +12,29 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class RegistrationUserHandler
 {
+    /**
+     * @var RegistrationUserBuilder
+     */
     private $registrationUserBuilder;
+
+    /**
+     * @var ValidatorInterface
+     */
     private $validatorInterface;
+
+    /**
+     * @var Mailer
+     */
     private $mailer;
+
+    /**
+     * @var SessionInterface
+     */
     private $sessionInterface;
+
+    /**
+     * @var UserRepository
+     */
     private $userRepository;
 
 

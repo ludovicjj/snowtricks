@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Builder;
+namespace App\Builder\Image;
 
 use App\DTO\ImageDTO;
 use App\Entity\Image;
@@ -30,11 +30,6 @@ class ImageBuilder
         $imagesCollection = [];
 
         foreach ($images as $image) {
-            /*
-            if (null !== $image->file) {
-                $imagesCollection[] = $this->createImage($image);
-            }
-            */
             if (null !== $image) {
                 $imagesCollection[] = $this->createImage($image);
             }

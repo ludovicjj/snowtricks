@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Builder;
-
+namespace App\Builder\Video;
 
 use App\DTO\VideoDTO;
 use App\Entity\Video;
@@ -10,14 +9,17 @@ use App\Repository\VideoRepository;
 class VideoUpdateBuilder
 {
     // temoi
-    private $oldUrl = [];
     private $newUrl = [];
+    private $oldUrl = [];
 
     /**
      * @var VideoBuilder
      */
     private $videoBuilder;
 
+    /**
+     * @var VideoRepository
+     */
     private $videoRepository;
 
     public function __construct(

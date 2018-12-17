@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Builder;
+namespace App\Builder\Video;
 
 use App\DTO\VideoDTO;
 use App\Entity\Video;
@@ -8,6 +8,9 @@ use App\Service\VideoUploader;
 
 class VideoBuilder
 {
+    /**
+     * @var VideoUploader
+     */
     private $videoUploader;
 
     public function __construct(VideoUploader $videoUploader)
@@ -48,5 +51,4 @@ class VideoBuilder
             $infoVideo['url']
         );
     }
-
 }

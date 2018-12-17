@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Image;
 
 use App\Repository\ImageRepository;
 use App\Repository\TrickRepository;
@@ -11,8 +11,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DeleteImageController
 {
+    /**
+     * @var ImageRepository
+     */
     private $imageRepository;
+
+    /**
+     * @var TrickRepository
+     */
     private $trickRepository;
+
+    /**
+     * @var FileDelete
+     */
     private $fileDelete;
 
     public function __construct(

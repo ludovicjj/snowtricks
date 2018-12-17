@@ -1,16 +1,24 @@
 <?php
 
-namespace App\Builder;
+namespace App\Builder\Trick;
 
 use App\DTO\TrickDTO;
 use App\Entity\Trick;
+use App\Builder\Image\ImageBuilder;
+use App\Builder\Video\VideoUpdateBuilder;
 
 class UpdateTrickBuilder
 {
     private $trick;
 
+    /**
+     * @var ImageBuilder
+     */
     private $imageBuilder;
 
+    /**
+     * @var VideoUpdateBuilder
+     */
     private $videoUpdateBuilder;
 
     public function __construct(

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Trick;
 
 use App\Repository\TrickRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class ShowTrickController
     }
 
     /**
-     * @Route("figure/{slug}", name="show_trick")
+     * @Route("/figure/{slug}", name="show_trick")
      *
      * @param Request $request
      * @return Response

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Trick;
 
 use App\Form\Handler\AddTrickHandler;
 use App\Form\Type\AddTrickType;
@@ -62,7 +62,7 @@ class AddTrickController
         $form = $this->formFactory->create(AddTrickType::class)->handleRequest($request);
 
         if ($this->addTrickHandler->handle($form)) {
-            // Redirection vers la home page si la prise en charge du formulaire renvoi true.
+
             return new RedirectResponse(
                 $this->urlGenerator->generate('home')
             );

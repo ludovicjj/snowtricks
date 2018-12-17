@@ -3,7 +3,7 @@
 namespace App\Form\Handler;
 
 use App\Entity\Trick;
-use App\Builder\UpdateTrickBuilder;
+use App\Builder\Trick\UpdateTrickBuilder;
 use App\Repository\TrickRepository;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;

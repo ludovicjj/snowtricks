@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Trick;
 
-use App\Builder\DeleteTrickBuilder;
+use App\Builder\Trick\DeleteTrickBuilder;
 use App\Repository\TrickRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

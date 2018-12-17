@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Trick;
 
 use App\Factory\TrickDTOFactory;
 use App\Repository\TrickRepository;
