@@ -5,7 +5,10 @@ security:
             algorithm: bcrypt
 
     providers:
-        in_memory: { memory: ~ }
+        in_database:
+            entity:
+                class: App\Entity\User
+                property: username
 
     firewalls:
         dev:
@@ -13,14 +16,20 @@ security:
             security: false
         main:
             anonymous: true
+            pattern: ^/
+            provider: in_database
+            form_login:
+                login_path: security_login
+                check_path: security_login
+            logout:
+                path: security_logout
+                target: home
+            guard:
+                authenticators:
+                    - App\Builder\User\LoginUserBuilder
 
-            # activate different ways to authenticate
 
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

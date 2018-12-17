@@ -17,6 +17,14 @@
                         </div>
                     </div>
                 {% endfor %}
+
+                {% if error %}
+                    <div class="col-12">
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
 
@@ -39,6 +47,7 @@
                                name="username"
                                id="inputUsername"
                                class="form-control"
+                               value="{{ last_username }}"
                                required autofocus
                         >
                     </div>
@@ -54,8 +63,8 @@
                     </div>
                     {# csrf_token #}
                     <input type="hidden"
-                           name="_crsf_token"
-                           value="{{ csrf_token('authentification') }}"
+                           name="_csrf_token"
+                           value="{{ csrf_token('snowtricksauthentification') }}"
                     >
                 </div>
             </div>
