@@ -1,0 +1,16 @@
+<h3>Réinitialiser votre mot de passe</h3>
+
+Bonjour {{ username }} !<br>
+<p>
+    Si vous étes à l'origine de ce mail, cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe.<br>
+    Sinon vous pouvez ignorer cet email.
+</p>
+
+<p>
+    <a href="{{ url('security_reset', {'token': token}) }}">Lien pour réinitialiser votre mot de passe.</a>
+</p>
+
+<p>
+    Merci.<br>
+    Snowtricks.com
+</p>

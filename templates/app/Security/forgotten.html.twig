@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/form_trick.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        {# Message Flash #}
+        <div class="row">
+            <div class="col-12">
+                {% for message in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.session.flashbag.get('warning') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12 page-header">
+                <h4>Mot de passe oublié</h4>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-12 form-group">
+                {# login #}
+                {{ form_row(form.login) }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-secondary mt-2">
+                    Valider
+                </button>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

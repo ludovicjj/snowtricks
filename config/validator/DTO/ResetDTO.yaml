@@ -1,0 +1,21 @@
+App\DTO\ResetDTO:
+    properties:
+        password:
+            - NotBlank:
+                message: Veuillez saisir un mot de passe.
+            - Length:
+                max: 255
+                maxMessage: Maximun {{ limit }} caractères.
+            - EqualTo:
+                propertyPath: confirmPassword
+                message: Les mots de passe ne sont pas identique.
+
+        confirmPassword:
+            - NotBlank:
+                message: Veuillez confirmer votre mot de passe.
+            - Length:
+                max: 255
+                maxMessage: Maximun {{ limit }} caractères.
+            - EqualTo:
+                propertyPath: password
+                message:

@@ -1,0 +1,5 @@
+App\DTO\ForgottenDTO:
+    properties:
+        login:
+            - NotBlank:
+                message: Veuillez saisir votre pseudo ou votre adresse e-mail.

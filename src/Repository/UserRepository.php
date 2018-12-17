@@ -32,4 +32,20 @@ class UserRepository extends ServiceEntityRepository
     {
         $this->_em->flush();
     }
+
+    /**
+     * @param $login
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findUserByUsernameOrEmail($login)
+    {
+        return $this
+            ->createQueryBuilder('u')
+            ->where('u.username = :login OR u.email = :login')
+            ->setParameter('login', $login)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }
