@@ -1,0 +1,10 @@
+<h3>Validation du compte</h3>
+
+Bonjour {{ username }} !<br>
+<p>
+    Merci pour l'interet que vous portez à notre site.<br>
+    Pour activez votre compte, cliquez sur le lien ci-dessous :
+</p>
+<p>
+    <a href="{{ url('security_enabled', {'token': token}) }}">Activer votre compte</a>
+</p>

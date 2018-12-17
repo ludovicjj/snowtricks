@@ -7,8 +7,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('add_trick') }}">Ajouter</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == 'add_trick' %}active{% endif %}"
+                   href="{{ path('add_trick') }}"
+                >
+                    Ajouter
+                </a>
+            </li>
+            <li>
+                <a class="nav-link {% if app.request.attributes.get('_route') == 'security_registration' %}active{% endif %}"
+                   href="{{ path('security_registration') }}"
+                >
+                    Inscription
+                </a>
             </li>
         </ul>
+
+        <a href="{{ path('security_login') }}" class="btn btn-outline-primary">Connexion</a>
+
     </div>
 </nav>
