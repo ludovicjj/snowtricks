@@ -1,0 +1,5 @@
+App\DTO\CommentDTO:
+    properties:
+        message:
+            - NotBlank:
+                message: Veuillez saisir un message.

@@ -28,25 +28,83 @@
         </div>
     </div>
 
-    <section class="container image-container">
-        <h4>Images :</h4>
+    {% if trick.images|length == 0 %}
+    {% else %}
+        <section class="container image-container">
+            <h4>Images :</h4>
+            <div class="row">
+                {% for image in trick.images %}
+                    <div class="col-4">
+                        <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="rounded">
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    {% if trick.videos|length == 0 %}
+    {% else %}
+        <section class="container">
+            <h4>Video :</h4>
+            <div class="row">
+                {% for video in trick.videos %}
+                    <div class="col-4 video-container">
+                        <div style='height :200px ;width :300px'>
+                            {{ video.Iframe()|raw }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+
+
+    {# Commentaire #}
+    <section class="container mt-4">
         <div class="row">
-            {% for image in trick.images %}
-                <div class="col-4">
-                    <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="rounded">
-                </div>
-            {% endfor %}
+            <div class="col-12 form-title">
+                <h4>Commentaire</h4>
+            </div>
         </div>
+        {% if is_granted('ROLE_USER') %}
+            <div class="row">
+                <div class="col-12">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="form-row">
+                        <div class="col-12">
+                            {{ form_row(form.message) }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <button type="submit" class="btn-secondary btn mt-2">
+                                Envoyer
+                            </button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-danger">
+                        Vous devez être connecté pour écrire un commentaire
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </section>
 
+    {# test display comment #}
     <section class="container">
-        <h4>Video :</h4>
         <div class="row">
-            {% for video in trick.videos %}
-                <div class="col-4 video-container">
-                    <div style='height :200px ;width :300px'>
-                        {{ video.Iframe()|raw }}
-                    </div>
+            {% for comment in trick.comments %}
+                <div class="col-12">
+                    <p>
+                        {{ comment.message }}
+                    </p>
                 </div>
             {% endfor %}
         </div>

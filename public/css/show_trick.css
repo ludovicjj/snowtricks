@@ -1,3 +1,13 @@
+/* form-header */
+.form-title {
+    color: #5a5a5a;
+}
+.form-title h4 {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 25px;
+    margin: 20px 0 30px;
+}
+
 /* Description*/
 .description-container {
     margin-bottom: 50px;

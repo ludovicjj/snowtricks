@@ -55,6 +55,11 @@ class Trick
     private $videos;
 
     /**
+     * @var ArrayCollection
+     */
+    private $comments;
+
+    /**
      * Trick constructor.
      * @param string $title
      * @param string $description
@@ -81,6 +86,7 @@ class Trick
         $this->category = $category;
         $this->images = new ArrayCollection($images);
         $this->videos = new ArrayCollection($videos);
+        $this->comments = new ArrayCollection();
 
         // Liaison trick-Video
         foreach ($videos as $video) {
@@ -113,6 +119,11 @@ class Trick
         $this->category = $category;
         $this->addImage($images);
         $this->addVideos($videos);
+    }
+
+    public function addComment($comment)
+    {
+        $this->comments[] = $comment;
     }
 
     public function addVideos(array $videos)
@@ -178,5 +189,10 @@ class Trick
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
