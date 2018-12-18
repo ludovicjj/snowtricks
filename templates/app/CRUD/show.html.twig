@@ -98,10 +98,11 @@
     </section>
 
     {# test display comment #}
-    <section class="container">
+    <section class="container mt-4">
         <div class="row">
             {% for comment in trick.comments %}
                 <div class="col-12">
+                    <strong>{{ comment.user.username }}</strong>
                     <p>
                         {{ comment.message }}
                     </p>

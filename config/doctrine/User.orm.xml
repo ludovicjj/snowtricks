@@ -11,5 +11,6 @@
         <field name="roles" type="array" />
         <field name="enabled" type="boolean" />
         <field name="token" type="string" length="191" unique="true"/>
+
     </entity>
 </doctrine-mapping>

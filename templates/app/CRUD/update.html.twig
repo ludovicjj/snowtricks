@@ -52,30 +52,27 @@
                         <div class="alert alert-success image-delete-message"></div>
                     </div>
 
-                    {% set foo = "no-image" %}
-                    {% for image in trick.images %}
-                        {% set foo = "has-image" %}
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 image-upload" style="display:flex;">
-                            <div class="form-control form-group container-ajax" style="height: auto;">
-                                <img src="{{ asset( image.path ) }}" alt="{{ image.alt }}" class="img-fluid img-preview-upload">
-                                <div class="d-flex justify-content-around">
-
-                                    <a data-url="{{ path('delete_images', {'id_image': image.id, 'id_trick': trick.id}) }}" href=""
-                                       title="Supprimer"
-                                       class="link-ajax btn btn-primary"
-                                    >
-                                        Supprimer
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                    {% if foo is same as("no-image") %}
+                    {% if trick.images|length == 0 %}
                         <div class="alert alert-primary col-12 text-center" role="alert">
                             Il n'y a pour l'instant aucune image pour cette figure.<br/>
                             Utiliser la section ci-dessous pour en rajouter.
                         </div>
+                    {% else %}
+                        {% for image in trick.images %}
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 image-upload" style="display:flex;">
+                                <div class="form-control form-group container-ajax" style="height: auto;">
+                                    <img src="{{ asset( image.path ) }}" alt="{{ image.alt }}" class="img-fluid img-preview-upload">
+                                    <div class="d-flex justify-content-around">
+                                        <a data-url="{{ path('delete_images', {'id_image': image.id, 'id_trick': trick.id}) }}" href=""
+                                           title="Supprimer"
+                                           class="link-ajax btn btn-primary"
+                                        >
+                                            Supprimer
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     {% endif %}
                 </div>
             </div>

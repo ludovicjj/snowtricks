@@ -23,19 +23,27 @@ class Comment
     private $trick;
 
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * Comment constructor.
      * @param string $message
      * @param Trick $trick
+     * @param User $user
      * @throws \Exception
      */
     public function __construct(
         string $message,
-        Trick $trick
+        Trick $trick,
+        User $user
     )
     {
         $this->id = Uuid::uuid4();
         $this->message = $message;
         $this->trick = $trick;
+        $this->user = $user;
     }
 
     public function getId(): UuidInterface
@@ -48,8 +56,13 @@ class Comment
         return $this->message;
     }
 
-    public function getTrick()
+    public function getTrick(): Trick
     {
         return $this->trick;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
     }
 }

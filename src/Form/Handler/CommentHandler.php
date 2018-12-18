@@ -45,7 +45,6 @@ class CommentHandler
 
             if ($comment) {
                 $trick->addComment($comment);
-
                 $this->trickRepository->save();
             }
         }
