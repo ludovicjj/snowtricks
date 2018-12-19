@@ -44,6 +44,11 @@ class User implements UserInterface
     private $enabled;
 
     /**
+     * @var Avatar
+     */
+    private $avatar;
+
+    /**
      * User constructor.
      * @throws \Exception
      */
@@ -59,16 +64,19 @@ class User implements UserInterface
      * @param string $username
      * @param string $password
      * @param string $email
+     * @param Avatar $avatar
      */
     public function registrationUser(
         string $username,
         string $password,
-        string $email
+        string $email,
+        Avatar $avatar
     )
     {
         $this->username = $username;
         $this->password = $password;
         $this->email = $email;
+        $this->avatar = $avatar;
     }
 
     /**
@@ -129,6 +137,11 @@ class User implements UserInterface
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function getAvatar(): Avatar
+    {
+        return $this->avatar;
     }
 
     public function eraseCredentials()
