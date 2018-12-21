@@ -12,4 +12,24 @@ class AvatarRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Avatar::class);
     }
+
+    /**
+     * @param Avatar $avatar
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function remove(Avatar $avatar): void
+    {
+        $this->_em->remove($avatar);
+        $this->save();
+    }
+
+    /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save()
+    {
+        $this->_em->flush();
+    }
 }

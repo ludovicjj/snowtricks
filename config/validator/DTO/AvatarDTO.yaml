@@ -1,0 +1,11 @@
+App\DTO\AvatarDTO:
+    properties:
+        avatar:
+            - NotBlank:
+                message: Vous devez choisir une image.
+            - Image:
+                mimeTypes:
+                    - 'image/jpg'
+                    - 'image/jpeg'
+                    - 'image/png'
+                mimeTypesMessage: Format non valide (jpg, png, jpeg).

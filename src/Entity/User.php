@@ -99,6 +99,16 @@ class User implements UserInterface
         $this->password = $password;
     }
 
+    /**
+     * @param Avatar $avatar
+     */
+    public function updateAvatar(
+        Avatar $avatar
+    )
+    {
+        $this->avatar = $avatar;
+    }
+
     public function getId(): UuidInterface
     {
         return $this->id;

@@ -1,0 +1,22 @@
+{{ form_start(form, {'attr': {'novalidate' : 'novalidate', 'class' : 'avatar'} }) }}
+
+
+<div class="form-group row">
+
+    <div class="offset-2 col-8 container-avatar image-reader">
+        {{ form_widget(form) }}
+        <div class="form-control form-group" style="height:auto;">
+            <label for="avatar_avatar" class="label-avatar">
+                <img src="{{ asset( '/image/default-image.jpg' ) }}" alt="default-image" class="img-fluid">
+            </label>
+        </div>
+    </div>
+
+
+    <div class="col-sm-12 text-center">
+        <button type="submit" class="btn btn-primary" data-label="Valider">
+            Enregistrer
+        </button>
+    </div>
+</div>
+{{ form_end(form) }}

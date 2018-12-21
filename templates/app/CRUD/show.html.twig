@@ -100,7 +100,7 @@
     {# test display comment #}
     <section class="container mt-4">
             {% for comment in trick.comments %}
-                <div class="row">
+                <div class="row mb-4">
                     <div class="col-1">
                         <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
                     </div>
