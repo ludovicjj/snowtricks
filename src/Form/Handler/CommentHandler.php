@@ -6,6 +6,7 @@ use App\Builder\Comment\CommentBuilder;
 use App\Entity\Trick;
 use App\Repository\TrickRepository;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CommentHandler
 {
@@ -14,19 +15,25 @@ class CommentHandler
      */
     private $commentBuilder;
 
-
     /**
      * @var TrickRepository
      */
     private $trickRepository;
 
+    /**
+     * @var SessionInterface
+     */
+    private $sessionInterface;
+
     public function __construct(
         CommentBuilder $commentBuilder,
-        TrickRepository $trickRepository
+        TrickRepository $trickRepository,
+        SessionInterface $sessionInterface
     )
     {
         $this->commentBuilder = $commentBuilder;
         $this->trickRepository = $trickRepository;
+        $this->sessionInterface = $sessionInterface;
     }
 
     /**
@@ -44,8 +51,13 @@ class CommentHandler
 
             if ($comment) {
                 $trick->addComment($comment);
+
                 // Incrémentation
                 $trick->increaseComment();
+
+                // Message Flash
+                $this->sessionInterface->getFlashBag()->add('success-comment', 'Votre commentaire a été rajouté avec succès');
+
                 $this->trickRepository->save();
             }
 

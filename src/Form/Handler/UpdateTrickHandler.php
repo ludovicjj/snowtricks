@@ -85,7 +85,7 @@ class UpdateTrickHandler
             }
 
             $this->trickRepository->save();
-            $this->sessionInterface->getFlashBag()->add('success', 'La figure a été modifiée avec succès');
+            $this->sessionInterface->getFlashBag()->add('success-update-trick', 'La figure a été modifiée avec succès');
 
             return true;
         }

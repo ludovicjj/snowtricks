@@ -14,7 +14,12 @@
     <div class="container">
 
         {# Message Flash de succes #}
-        {% for message in app.session.flashBag.get('success') %}
+        {% for message in app.session.flashBag.get('success-update-trick') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% for message in app.session.flashBag.get('success-comment') %}
             <div class="alert alert-success mt-4">
                 {{ message }}
             </div>
