@@ -11,6 +11,13 @@
             <h4>Tableau de board</h4>
         </div>
 
+        {# Message Flash de succes #}
+        {% for message in app.session.flashBag.get('success-avatar') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         <div class="row">
             <div class="col-12 mb-4">
                 <p>
