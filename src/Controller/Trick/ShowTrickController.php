@@ -6,10 +6,12 @@ use App\Form\Handler\CommentHandler;
 use App\Form\Type\CommentType;
 use App\Repository\TrickRepository;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 class ShowTrickController
@@ -29,19 +31,26 @@ class ShowTrickController
      */
     private $formFactory;
 
+    /**
+     * @var CommentHandler
+     */
     private $commentHandler;
+
+    private $urlGenerator;
 
     public function __construct(
         TrickRepository $trickRepository,
         Environment $twig,
         FormFactoryInterface $formFactory,
-        CommentHandler $commentHandler
+        CommentHandler $commentHandler,
+        UrlGeneratorInterface $urlGenerator
     )
     {
         $this->trickRepository = $trickRepository;
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->commentHandler = $commentHandler;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -64,7 +73,12 @@ class ShowTrickController
         }
 
         $form = $this->formFactory->create(CommentType::class)->handleRequest($request);
-        $this->commentHandler->handle($form, $trick);
+
+        if ($this->commentHandler->handle($form, $trick)) {
+            return new RedirectResponse(
+                $this->urlGenerator->generate('show_trick', ['slug' => $trick->getSlug()])
+            );
+        }
 
         return new Response(
             $this->twig->render('App/CRUD/show.html.twig', [
