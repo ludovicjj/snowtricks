@@ -44,6 +44,8 @@ class CommentHandler
 
             if ($comment) {
                 $trick->addComment($comment);
+                // Incrémentation
+                $trick->increaseComment();
                 $this->trickRepository->save();
             }
 

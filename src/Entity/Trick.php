@@ -60,6 +60,11 @@ class Trick
     private $comments;
 
     /**
+     * @var int
+     */
+    private $nbComments;
+
+    /**
      * Trick constructor.
      * @param string $title
      * @param string $description
@@ -87,6 +92,7 @@ class Trick
         $this->images = new ArrayCollection($images);
         $this->videos = new ArrayCollection($videos);
         $this->comments = new ArrayCollection();
+        $this->nbComments = 0;
 
         // Liaison trick-Video
         foreach ($videos as $video) {
@@ -146,6 +152,12 @@ class Trick
         $this->images->removeElement($image);
     }
 
+    public function increaseComment(): void
+    {
+        $this->nbComments++;
+    }
+
+
     public function getId(): UuidInterface
     {
         return $this->id;
@@ -194,5 +206,10 @@ class Trick
     public function getComments()
     {
         return $this->comments;
+    }
+
+    public function getNbComments(): int
+    {
+        return $this->nbComments;
     }
 }
