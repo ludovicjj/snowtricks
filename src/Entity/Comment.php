@@ -28,6 +28,11 @@ class Comment
     private $user;
 
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
      * Comment constructor.
      * @param string $message
      * @param Trick $trick
@@ -44,6 +49,7 @@ class Comment
         $this->message = $message;
         $this->trick = $trick;
         $this->user = $user;
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): UuidInterface
@@ -64,5 +70,10 @@ class Comment
     public function getUser(): User
     {
         return $this->user;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
     }
 }
