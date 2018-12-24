@@ -33,35 +33,41 @@
         </div>
     </div>
 
-    {% if trick.images|length == 0 %}
-    {% else %}
-        <section class="container image-container">
-            <h4>Images :</h4>
-            <div class="row">
+    {# Carousel_image #}
+    <section class="container">
+        <h4>Images :</h4>
+        <div id="carousel_image">
+            {% if trick.images|length == 0 %}
+                    <p>Il n'y a pas de d'images pour cette figure</p>
+            {% else %}
                 {% for image in trick.images %}
-                    <div class="col-4">
-                        <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="img-thumbnail">
+                    <div class="item">
+                        <div class="item__image">
+                            <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="img-thumbnail">
+                        </div>
                     </div>
                 {% endfor %}
-            </div>
-        </section>
-    {% endif %}
+            {% endif %}
+        </div>
+    </section>
 
-    {% if trick.videos|length == 0 %}
-    {% else %}
-        <section class="container">
-            <h4>Video :</h4>
-            <div class="row">
+    {# Carousel_video #}
+    <section class="container">
+        <h4>Video :</h4>
+        <div id="carousel_video">
+            {% if trick.videos|length == 0 %}
+                <p>Il n'y a pas de vidéo pour cette figure</p>
+            {% else %}
                 {% for video in trick.videos %}
-                    <div class="col-4 video-container">
-                        <div style='height :200px ;width :300px'>
+                    <div class="item">
+                        <div class="item__image embed-responsive embed-responsive-16by9">
                             {{ video.Iframe()|raw }}
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-        </section>
-    {% endif %}
+            {% endif %}
+        </div>
+    </section>
 
 
 
@@ -102,20 +108,25 @@
         {% endif %}
     </section>
 
-    {# test display comment #}
+    {# comment #}
     <section class="container mt-4">
-            {% for comment in trick.comments %}
-                <div class="row mb-4">
-                    <div class="col-1">
-                        <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
-                    </div>
-                    <div class="col-11">
-                        <strong>{{ comment.user.username }}</strong><i><small> écrit à :{{ comment.createdAt|date('H:i') }}, le {{ comment.createdAt|date('d/m/Y') }}</small></i>
-                        <p>
-                            {{ comment.message }}
-                        </p>
-                    </div>
+        {% for comment in trick.comments %}
+            <div class="row mb-4">
+                <div class="col-1">
+                    <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
                 </div>
-            {% endfor %}
+                <div class="col-11">
+                    <strong>{{ comment.user.username }}</strong><i><small> écrit à :{{ comment.createdAt|date('H:i') }}, le {{ comment.createdAt|date('d/m/Y') }}</small></i>
+                    <p>
+                        {{ comment.message }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {# Carousel  #}
+    <script src="{{ asset('js/carousel.js') }}"></script>
 {% endblock %}
