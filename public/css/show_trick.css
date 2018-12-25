@@ -106,12 +106,12 @@
     margin-bottom:50px;
 }
 
-.back_home_container:hover i {
+.back_home:hover i {
     margin-right:15px;
     opacity: 1;
 }
 
-.back_home_container i {
+.back_home i {
     margin-right:-15px;
     opacity: 0;
     -webkit-transition: margin-right 0.3s, opacity 0.3s;
