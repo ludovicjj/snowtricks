@@ -25,9 +25,17 @@
             </div>
         {% endfor %}
 
-        <div class="row description-container">
-            <div class="col-12">
-                <h4>Description :</h4>
+        {# Back Home #}
+        <div class="row">
+            <div class="col-12 push__right back_home_container">
+                <a href="{{ path('home') }}" class="btn btn-outline-primary back_home">
+                    <i class="fas fa-angle-double-left"></i>Retour à la liste des figures
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 bottom__default push__right">
+                <h4 class="title">Description :</h4>
                 <p>{{ trick.description }}</p>
             </div>
         </div>
@@ -35,29 +43,79 @@
 
     {# Carousel_image #}
     <section class="container">
-        <h4>Images :</h4>
-        <div id="carousel_image">
-            {% if trick.images|length == 0 %}
-                    <p>Il n'y a pas de d'images pour cette figure</p>
+        {% if trick.images|length == 0 %}
+            <div class="row">
+                <div class="col-12 bottom__default push__right">
+                    <h4 class="title ">Image :</h4>
+                    <p>Il n'y a pas de d'image pour cette figure</p>
+                    <div id="carousel_image"></div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-12 push__right">
+            {% if trick.images|length > 1 %}
+                <h4 class="title">Images :</h4>
             {% else %}
+                <h4 class="title">Image :</h4>
+            {% endif %}
+                </div>
+            </div>
+            <div id="carousel_image">
                 {% for image in trick.images %}
                     <div class="item">
                         <div class="item__image">
-                            <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="img-thumbnail">
+                            <a href="#" data-toggle="modal" data-target="#modal__image--{{ image.id }}">
+                                <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="img-thumbnail">
+                            </a>
                         </div>
                     </div>
                 {% endfor %}
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </section>
+
+    {# Large modal #}
+    {% for image in trick.images %}
+        <div class="modal fade bd-example-modal-lg" id="modal__image--{{ image.id }}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{ asset(image.path) }}" alt="{{ image.alt }}" class="rounded img-fluid" style="min-width:100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
 
     {# Carousel_video #}
     <section class="container">
-        <h4>Video :</h4>
-        <div id="carousel_video">
-            {% if trick.videos|length == 0 %}
-                <p>Il n'y a pas de vidéo pour cette figure</p>
-            {% else %}
+        {% if trick.videos|length == 0 %}
+            <div class="row">
+                <div class="col-12 bottom__default push__right">
+                    <h4 class="title ">Vidéo :</h4>
+                    <p>Il n'y a pas de vidéo pour cette figure</p>
+                    <div id="carousel_video"></div>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-12 push__right">
+                    {% if trick.videos|length > 1 %}
+                        <h4 class="title">Vidéos :</h4>
+                    {% else %}
+                        <h4 class="title">Vidéo :</h4>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="carousel_video">
                 {% for video in trick.videos %}
                     <div class="item">
                         <div class="item__image embed-responsive embed-responsive-16by9">
@@ -65,8 +123,8 @@
                         </div>
                     </div>
                 {% endfor %}
-            {% endif %}
-        </div>
+            </div>
+        {% endif %}
     </section>
 
 
@@ -74,7 +132,7 @@
     {# Form Commentaire #}
     <section class="container mt-4">
         <div class="row">
-            <div class="col-12 form-title">
+            <div class="col-12 form-title title">
                 <h4>Commentaire ({{ trick.NbComments }})</h4>
             </div>
         </div>
@@ -112,14 +170,16 @@
     <section class="container mt-4">
         {% for comment in trick.comments %}
             <div class="row mb-4">
-                <div class="col-1">
-                    <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
-                </div>
-                <div class="col-11">
-                    <strong>{{ comment.user.username }}</strong><i><small> écrit à :{{ comment.createdAt|date('H:i') }}, le {{ comment.createdAt|date('d/m/Y') }}</small></i>
-                    <p>
-                        {{ comment.message }}
-                    </p>
+                <div class="comment__container shadow-sm p-3 mb-1 bg-white rounded">
+                    <div class="comment__avatar">
+                        <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
+                    </div>
+                    <div class="comment__message">
+                        <strong>{{ comment.user.username }}</strong><i><small> écrit à :{{ comment.createdAt|date('H:i') }}, le {{ comment.createdAt|date('d/m/Y') }}</small></i>
+                        <p>
+                            {{ comment.message }}
+                        </p>
+                    </div>
                 </div>
             </div>
         {% endfor %}
