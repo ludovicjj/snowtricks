@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <div class="jumbotron text-center">
-        <h1>
-            Snowtricks
-        </h1>
-        <p>Ceci est la phrase d'accroche</p>
+{% block cover %}
+    <div class="cover_home" style="background-image: url('{{ asset('image/cover.jpg') }}')">
+        <div class="home_title text-center">
+            <h1>SNOWTRICKS</h1>
+        </div>
+        <div class="home_subtitle text-center">
+            <p>Ceci est la phrase d'accroche</p>
+        </div>
     </div>
-    <div class="container">
-        <h2>Liste des figures </h2>
+{% endblock %}
 
+{% block body %}
+    <div class="container">
+        <h2 class="custom_title mb-4">Liste des figures </h2>
         {# Message Flash de succes #}
         {% for message in app.session.flashBag.get('success') %}
             <div class="alert alert-success mt-4">
@@ -24,4 +28,7 @@
             {% endfor %}
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/cover.js') }}"></script>
 {% endblock %}

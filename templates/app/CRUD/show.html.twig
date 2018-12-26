@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-12 push__right">
                 <div class="back_home_container">
-                    <a href="{{ path('home') }}" class="btn btn-outline-primary back_home">
+                    <a href="{{ path('home') }}" class="btn btn_custom">
                         <i class="fas fa-angle-double-left"></i>Retour à la liste des figures
                     </a>
                 </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-12 bottom__default push__right">
-                <h4 class="title">Description :</h4>
+                <h4 class="custom_title">Description :</h4>
                 <p>{{ trick.description }}</p>
             </div>
         </div>
@@ -48,7 +48,7 @@
         {% if trick.images|length == 0 %}
             <div class="row">
                 <div class="col-12 bottom__default push__right">
-                    <h4 class="title ">Image :</h4>
+                    <h4 class="custom_title">Image :</h4>
                     <p>Il n'y a pas de d'image pour cette figure</p>
                     <div id="carousel_image"></div>
                 </div>
@@ -57,9 +57,9 @@
             <div class="row">
                 <div class="col-12 push__right">
             {% if trick.images|length > 1 %}
-                <h4 class="title">Images :</h4>
+                <h4 class="custom_title">Images :</h4>
             {% else %}
-                <h4 class="title">Image :</h4>
+                <h4 class="custom_title">Image :</h4>
             {% endif %}
                 </div>
             </div>
@@ -102,7 +102,7 @@
         {% if trick.videos|length == 0 %}
             <div class="row">
                 <div class="col-12 bottom__default push__right">
-                    <h4 class="title ">Vidéo :</h4>
+                    <h4 class="custom_title">Vidéo :</h4>
                     <p>Il n'y a pas de vidéo pour cette figure</p>
                     <div id="carousel_video"></div>
                 </div>
@@ -111,9 +111,9 @@
             <div class="row">
                 <div class="col-12 push__right">
                     {% if trick.videos|length > 1 %}
-                        <h4 class="title">Vidéos :</h4>
+                        <h4 class="custom_title">Vidéos :</h4>
                     {% else %}
-                        <h4 class="title">Vidéo :</h4>
+                        <h4 class="custom_title">Vidéo :</h4>
                     {% endif %}
                 </div>
             </div>
@@ -134,13 +134,13 @@
     {# Form Commentaire #}
     <section class="container mt-4">
         <div class="row">
-            <div class="col-12 form-title title">
+            <div class="col-12 custom_title push__right">
                 <h4>Commentaire ({{ trick.NbComments }})</h4>
             </div>
         </div>
         {% if is_granted('ROLE_USER') %}
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 push__right">
                     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
                     <div class="form-row">
                         <div class="col-12">
@@ -149,7 +149,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-12">
-                            <button type="submit" class="btn-secondary btn mt-2">
+                            <button type="submit" class="btn btn_custom mt-2">
                                 Envoyer
                             </button>
                         </div>
@@ -169,9 +169,9 @@
     </section>
 
     {# comment #}
-    <section class="container mt-4">
+    <section class="container mt-1">
         {% for comment in trick.comments %}
-            <div class="row mb-4">
+            <div class="row mb-1">
                 <div class="comment__container shadow-sm p-3 mb-1 bg-white rounded">
                     <div class="comment__avatar">
                         <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
