@@ -7,8 +7,8 @@
 {% block body %}
     <div class="container mt-4">
 
-        <div class="page-title">
-            <h4>Tableau de board</h4>
+        <div class="custom_title">
+            <h4>Tableau de bord</h4>
         </div>
 
         {# Message Flash de succes #}
@@ -21,37 +21,36 @@
         <div class="row">
             <div class="col-12 mb-4">
                 <p>
-                    Bienvenu sur la page d'aministration de votre compte.<br>
+                    Bienvenue sur la page d'administration de votre compte.<br>
                 </p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-3">
-                <div class="offset-3 col-6  offset-sm-0 col-sm-12 container-avatar mb-2">
-                    <img src="{{ asset(app.user.avatar.path) }}" alt="{{ app.user.avatar.alt }}" class="img-fluid yolo">
+            <div class="col-12 col-sm-5 col-md-4 container_user_avatar mb-4 mb-sm-0">
+                <div class="offset-3 col-6  offset-sm-0 col-sm-12 mb-4 avatar__image">
+                    <img src="{{ asset(app.user.avatar.path) }}" alt="{{ app.user.avatar.alt }}" class="img-fluid bg-white rounded">
                 </div>
 
-                <div class="col-12 text-center">
-
+                <div class="col-12 text-center avatar__button">
                     {# Bouton pour declancher la fenetre modal #}
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-href="{{ path('update_avatar') }}">
-                        <i class="fa fa-plus"></i> Modifier avatar
+                    <button class="btn btn_custom" data-toggle="modal" data-target="#exampleModal" data-href="{{ path('update_avatar') }}">
+                        <i class="fas fa-angle-double-left"></i> Modifier avatar
                     </button>
                 </div>
             </div>
 
-            <div class="col-9">
+            <div class="col-12 col-sm-7 col-md-8 container_user_info">
                 <div class="col-12">
-                    <strong>Pseudo :</strong>
+                    <strong class="custom_grey">Pseudo :</strong>
                     <p>{{ app.user.username }}</p>
                 </div>
                 <div class="col-12">
-                    <strong>E-mail :</strong>
+                    <strong class="custom_grey">E-mail :</strong>
                     <p>{{ app.user.email }}</p>
                 </div>
                 <div class="col-12">
-                    <strong>Inscription :</strong>
+                    <strong class="custom_grey">Inscription :</strong>
                     <p>{{ app.user.createdAt|date('d/m/Y') }}</p>
                 </div>
 

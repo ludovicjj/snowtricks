@@ -1,0 +1,30 @@
+/* Title */
+.custom_title h4 {
+    border-bottom: 1px solid #3b5998;
+    padding-bottom: 25px;
+    margin: 20px 0 30px;
+}
+
+/* Color */
+.custom_grey {
+    color: #5a5a5a;
+}
+.custom_title {
+    color: #3b5998;
+}
+
+/* button */
+.btn_custom {
+    background: #3b5998;
+    border: 1px #3b5998 solid;
+    box-shadow:0 2px 2px rgba(0,0,0,.25);
+    color: #FFF;
+}
+.btn_custom:hover {
+    background: #263c6b;
+    border: 1px #263c6b solid;
+}
+.btn_custom:active {
+    background: #263c6b;
+    border: 1px #263c6b solid;
+}
