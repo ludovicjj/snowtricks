@@ -49,6 +49,11 @@ class User implements UserInterface
     private $avatar;
 
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
      * User constructor.
      * @throws \Exception
      */
@@ -58,6 +63,7 @@ class User implements UserInterface
         $this->roles = array('ROLE_USER');
         $this->token = hash("sha512", uniqid());
         $this->enabled = false;
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -129,7 +135,7 @@ class User implements UserInterface
         return $this->email;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return $this->roles;
     }
@@ -152,6 +158,11 @@ class User implements UserInterface
     public function getAvatar(): Avatar
     {
         return $this->avatar;
+    }
+
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
     }
 
     public function eraseCredentials()

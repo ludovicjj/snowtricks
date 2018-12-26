@@ -11,6 +11,7 @@
         <field name="roles" type="array" />
         <field name="enabled" type="boolean" />
         <field name="token" type="string" length="191" unique="true"/>
+        <field name="createdAt" column="date_create" type="datetime" />
 
         <one-to-one field="avatar" target-entity="App\Entity\Avatar" >
             <cascade>
