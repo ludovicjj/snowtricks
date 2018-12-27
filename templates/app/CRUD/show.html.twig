@@ -170,8 +170,12 @@
 
     {# comment #}
     <section class="container mt-1">
+
+        <div id="monId"><!--test-->
         {% for comment in trick.comments %}
-            <div class="row mb-1">
+            <div class="row mb-1 children-monId">
+
+
                 <div class="comment__container shadow-sm p-3 mb-1 bg-white rounded">
                     <div class="comment__avatar">
                         <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
@@ -183,12 +187,21 @@
                         </p>
                     </div>
                 </div>
+
+
             </div>
         {% endfor %}
+        </div><!--/fin test -->
+
+        <!-- Block container pagination -->
+        <div id="container_navigation" class="justify-content-center"></div>
+
+
     </section>
 {% endblock %}
 
 {% block javascripts %}
     {# Carousel  #}
     <script src="{{ asset('js/carousel.js') }}"></script>
+    <script src="{{ asset('js/pagination.js') }}"></script>
 {% endblock %}
