@@ -17,7 +17,7 @@ class Pagination {
 
         let buttonPagination = [].slice.call(document.querySelectorAll('.page-link'));
         buttonPagination.map((child) =>{
-            child.addEventListener('click', (subchild)=>{
+            child.addEventListener('click', ()=>{
                 this.go_to_page(child.classList[1]);
             })
         });
