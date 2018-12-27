@@ -18,9 +18,8 @@ $(document).on('submit', 'form', function(e){
     // ajaxSubmit du plugin ajaxForm nécessaire pour l'upload de fichier
     $form.ajaxSubmit({
         type: 'post',
-        success: function(data) {
-
-            if (data === 'L\'avatar a été modifier avec succes.') {
+        success: function(data, textStatus, jqxhr) {
+            if (jqxhr.status === 200) {
                 modal.modal('toggle');
                 location.reload();
             } else {

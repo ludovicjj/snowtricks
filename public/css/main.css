@@ -43,6 +43,7 @@
     width:45px;
     height: 45px;
     object-fit: cover;
+    border: 2px #d2691e solid;
 }
 .bg_custom {
     background: #263c6b;

@@ -66,7 +66,7 @@
 /* Commentaire */
 .comment__container {
     display: flex;
-    margin: 0 0 0 25px;
+    margin: 0 15px 0 15px;
     border: 1px lightgrey solid;
     width: 100%;
     padding: 5px;
@@ -97,4 +97,10 @@
 .btn_custom:hover i {
     opacity: 1;
     margin-right: 5px;
+}
+
+/* Jumbotron */
+.badge-custom {
+    background: #263c6b;
+    color: #FFF;
 }

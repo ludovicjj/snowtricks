@@ -5,7 +5,7 @@ namespace App\Service;
 
 class Slugger
 {
-    public static function Slug($string){
+    public static function slug($string){
         return strtolower(
             trim(
                 preg_replace(

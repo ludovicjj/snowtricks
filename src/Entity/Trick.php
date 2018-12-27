@@ -86,7 +86,7 @@ class Trick
         $this->id = Uuid::uuid4();
         $this->title = $title;
         $this->description = $description;
-        $this->slug = Slugger::Slug($slug);
+        $this->slug = Slugger::slug($slug);
         $this->createdAt = new \DateTime();
         $this->category = $category;
         $this->images = new ArrayCollection($images);
