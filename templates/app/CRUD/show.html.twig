@@ -12,18 +12,21 @@
         </h3>
     </div>
     <div class="container">
-
-        {# Message Flash de succes #}
-        {% for message in app.session.flashBag.get('success-update-trick') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
+        <div class="row">
+            <div class="col-12 push__right">
+            {# Message Flash de succes #}
+            {% for message in app.session.flashBag.get('success-update-trick') %}
+                <div class="alert alert-success mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.session.flashBag.get('success-comment') %}
+                <div class="alert alert-success mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
             </div>
-        {% endfor %}
-        {% for message in app.session.flashBag.get('success-comment') %}
-            <div class="alert alert-success mt-4">
-                {{ message }}
-            </div>
-        {% endfor %}
+        </div>
 
         {# Back Home #}
         <div class="row">
@@ -159,7 +162,7 @@
             </div>
         {% else %}
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 push__right">
                     <div class="alert alert-danger">
                         Vous devez être connecté pour écrire un commentaire
                     </div>
@@ -171,11 +174,9 @@
     {# comment #}
     <section class="container mt-1">
 
-        <div id="monId"><!--test-->
+        <div id="container_comment_js">
         {% for comment in trick.comments %}
             <div class="row mb-1 children-monId">
-
-
                 <div class="comment__container shadow-sm p-3 mb-1 bg-white rounded">
                     <div class="comment__avatar">
                         <img src="{{ asset(comment.user.avatar.path) }}" alt="{{ comment.user.avatar.alt }}" class="img-fluid">
@@ -187,16 +188,11 @@
                         </p>
                     </div>
                 </div>
-
-
             </div>
         {% endfor %}
-        </div><!--/fin test -->
+        </div>
 
-        <!-- Block container pagination -->
-        <div id="container_navigation" class="justify-content-center"></div>
-
-
+        <div id="container_navigation"></div>
     </section>
 {% endblock %}
 

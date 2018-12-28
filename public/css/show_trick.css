@@ -24,7 +24,7 @@
 .item {
     margin: 20px 10px;
     background-color: #fff;
-    box-shadow: 0 15px 35px #3232321a,0 5px 15px #0000001a;
+    box-shadow: 0 5px 15px #3232321a,0 5px 15px #0000001a;
 }
 
 .item__image img {
@@ -50,6 +50,10 @@
 
 .carousel__next:hover, .carousel__prev:hover {
     transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
 }
 
 .carousel__prev {
@@ -82,15 +86,7 @@
     padding:0 20px;
 }
 
-/* ------------------ TEST ----------------*/
-.children-monId {
-
-}
-/* ------------------ TEST ----------------*/
-
-
-
-/* Bouton back home */
+/* Bouton back trick list */
 .btn_custom {
     margin-bottom: 25px;
 }

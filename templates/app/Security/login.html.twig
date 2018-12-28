@@ -7,9 +7,18 @@
 {% block body %}
     <div class="container mt-4">
 
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-3 col-md-6">
+                <div class="col-md-12 custom_title">
+                    <h4>Connexion</h4>
+                </div>
+            </div>
+        </div>
+
+
         {# Message Flash #}
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-sm-12 offset-md-3 col-md-6">
                 {% for message in app.session.flashbag.get('success') %}
                     <div class="col-12">
                         <div class="alert alert-success">
@@ -38,16 +47,8 @@
 
         <form method="post">
 
-            <div class="form-row">
-                <div class="col-12">
-                    <div class="col-md-12 page-header">
-                        <h4>Connexion</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-sm-12 offset-md-3 col-md-6">
                     <div class="col-md-12 form-group">
                         {# Username #}
                         <label for="inputUsername">Pseudo</label>
@@ -77,19 +78,19 @@
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-sm-12 offset-md-3 col-md-6">
                     <div class="col-12">
                         <a href="{{ path('security_forgotten') }}">Mot de passe oublié</a>
                     </div>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="col-12" style="margin-left:15px;">
-                    <button type="submit" class="btn-secondary btn mt-2">
-                        Connexion
-                    </button>
+            <div class="row">
+                <div class="col-12 col-sm-12 offset-md-3 col-md-6">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn_custom mt-2">Connexion</button>
+                    </div>
                 </div>
             </div>
 

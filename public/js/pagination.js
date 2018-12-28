@@ -8,7 +8,7 @@ class Pagination {
 
         // Création d'un array avec les enfants de this.element
         this.children = [].slice.call(element.children);
-
+        console.log(this.children);
         // Recuperation du nombre d'items dans children, ici 4
         this.items = this.children.length;
 
@@ -74,8 +74,18 @@ class Pagination {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    new Pagination(document.querySelector('#monId'), {
-        show_per_page : 3,
-        current_page: 0,
-    });
+    if (document.querySelector('#container_comment_js') != null) {
+        new Pagination(document.querySelector('#container_comment_js'), {
+            show_per_page : 3,
+            current_page: 0,
+        });
+    }
+
+    if (document.querySelector('#container_trick_js') != null) {
+        new Pagination(document.querySelector('#container_trick_js'), {
+            show_per_page : 8,
+            current_page: 0,
+        });
+    }
+
 });

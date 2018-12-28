@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-2" style="display:flex;">
+<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
     <div class="card" style="width:100%;">
         {% if trick.images|length == 0 %}
             <div class="card-body">
@@ -45,11 +45,11 @@
             {% endif %}
         {% else %}
             {# Card Boody #}
-            <div class="card-body custom_card_body">
+            <div class="card-body custom_card_body_parent">
                 {% for image in trick.images %}
                     {% if loop.first %}
                         <a href="{{ path('show_trick', {'slug': trick.slug}) }}">
-                            <div class="card-body_image" style="background-image: url('{{ asset(image.path) }}');"></div>
+                            <div class="custom_card_body_child" style="background-image: url('{{ asset(image.path) }}');"></div>
                         </a>
                     {% endif %}
                 {% endfor %}

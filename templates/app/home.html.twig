@@ -22,13 +22,18 @@
         {% endfor %}
 
 
-        <div class="row">
+        <div class="row" id="container_trick_js">
             {% for trick in tricks %}
                 {{ include('layout/card.html.twig', {'trick': trick}) }}
             {% endfor %}
+        </div>
+
+        <div class=row">
+            <div id="container_navigation" class="mt-4"></div>
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('js/cover.js') }}"></script>
+    <script src="{{ asset('js/pagination.js') }}"></script>
 {% endblock %}
