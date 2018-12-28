@@ -49,8 +49,3 @@
 .form_avatar .custom-file {
     display: none;
 }
-/* hide badge error */
-/* Voir deplacer dans le css global */
-.form_avatar .form-error-icon {
-    display: none;
-}

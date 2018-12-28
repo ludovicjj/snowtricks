@@ -16,7 +16,7 @@
     color: #d2691e;
 }
 
-/* button */
+/* Button */
 .btn_custom {
     background: #3b5998;
     border: 1px #3b5998 solid;
@@ -39,7 +39,6 @@
 }
 
 /* Pagination */
-
 #container_navigation li.active .page-link {
     background-color: #d2691e;
     border: 1px #d2691e solid;
@@ -146,7 +145,11 @@
     transform: scale(1.2);
 }
 
-
 .custom_card_footer {
     background: #FFF;
+}
+
+/* Hide Badge error form */
+.form-error-icon {
+    display: none;
 }

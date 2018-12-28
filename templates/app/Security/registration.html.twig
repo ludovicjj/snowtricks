@@ -1,47 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/form_trick.css') }}">
-{% endblock %}
-
 {% block body %}
     <div class="container mt-4">
         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-        <div class="form-row">
-            <div class="col-12">
-                <div class="col-md-12 page-header">
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-3 col-md-6">
+                <div class="col-12 custom_title">
                     <h4>Inscription</h4>
                 </div>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="col-12">
-                <div class="col-md-12 form-group">
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-3 col-md-6">
+                <div class="col-12 form-group">
                     {# Username #}
                     {{ form_row(form.username) }}
                 </div>
-                <div class="col-md-12 form-group">
+                <div class="col-12 form-group">
                     {# Email #}
                     {{ form_row(form.email) }}
                 </div>
-                <div class="col-md-12 form-group">
+                <div class="col-12 form-group">
                     {# Password #}
                     {{ form_row(form.password) }}
                 </div>
-                <div class="col-md-12 form-group">
+                <div class="col-12 form-group">
                     {# ConfirmPassword #}
                     {{ form_row(form.confirmPassword) }}
                 </div>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="col-12" style="margin-left:15px;">
-                <button type="submit" class="btn-secondary btn mt-2">
-                    Valider
-                </button>
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-3 col-md-6">
+                <div class="col-12">
+                    <button type="submit" class="btn btn_custom mt-2">
+                        Valider
+                    </button>
+                </div>
             </div>
         </div>
 
