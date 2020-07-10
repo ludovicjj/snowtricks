@@ -78,8 +78,9 @@ class UpdateAvatarController
 
         $this->user = $this->tokenStorageInterface->getToken()->getUser();
 
+
         if ($this->avatarHandler->handler($form, $this->user)) {
-            return new Response('L\'avatar a été modifier avec succes.');
+            return new Response('success');
         }
 
         return new Response(

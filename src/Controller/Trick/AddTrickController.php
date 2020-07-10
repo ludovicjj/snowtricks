@@ -4,6 +4,7 @@ namespace App\Controller\Trick;
 
 use App\Form\Handler\AddTrickHandler;
 use App\Form\Type\AddTrickType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class AddTrickController
+class AddTrickController extends AbstractController
 {
     /**
      * @var Environment
@@ -61,12 +62,14 @@ class AddTrickController
     {
         $form = $this->formFactory->create(AddTrickType::class)->handleRequest($request);
 
+        /*
         if ($this->addTrickHandler->handle($form)) {
 
             return new RedirectResponse(
                 $this->urlGenerator->generate('home')
             );
         }
+        */
 
         return new Response(
             $this->twig->render('App/CRUD/add.html.twig', [

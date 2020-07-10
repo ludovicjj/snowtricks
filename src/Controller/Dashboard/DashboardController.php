@@ -37,7 +37,7 @@ class DashboardController
     public function dashboard(): Response
     {
         return new Response(
-            //$this->urlGenerator->generate('dashboard_home')
+
             $this->twig->render('app/Dashboard/dashboard.html.twig')
         );
     }

@@ -14,7 +14,7 @@ class VideoType extends AbstractType
     {
         $builder->add('url', TextType::class, [
             'attr' => [
-                'placeholder' => 'Url d\'une vidéo Youtube ou  DailyMotion.'
+                'placeholder' => 'Lien Youtube ou  DailyMotion.'
             ]
         ]);
     }

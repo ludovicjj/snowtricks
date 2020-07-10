@@ -8,7 +8,6 @@ class Pagination {
 
         // Création d'un array avec les enfants de this.element
         this.children = [].slice.call(element.children);
-        console.log(this.children);
         // Recuperation du nombre d'items dans children, ici 4
         this.items = this.children.length;
 

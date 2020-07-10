@@ -1,0 +1,79 @@
+{% import 'app/CRUD/macro/custom_form.html.twig' as formMacro %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class':'trick'}}) }}
+<div class="row">
+    <div class="col-12 col-sm-12 offset-md-2 col-md-8">
+
+        {# Title #}
+        <div class="col-12 form-group">
+            {{ form_row(form.title) }}
+        </div>
+
+        {# Description #}
+        <div class="col-12 form-group">
+            {{ form_row(form.description) }}
+        </div>
+
+        {# Category #}
+        <div class="col-12 form-group">
+            {{ form_row(form.category) }}
+        </div>
+
+    </div>
+</div>
+
+{# videos #}
+<div class="row">
+    <div class="col-12 col-sm-12 offset-md-2 col-md-8">
+
+        <div class="col-12 wrapper-video"
+             id="wrapper-video"
+             data-prototype="{{ formMacro.customVideoRow(form.videos.vars.prototype)|e('html_attr') }}"
+             data-index="{{ form.videos|length }}"
+        >
+            <div class="mb-2">
+                <a href="#" class="video-add">
+                    <span class="fa fa-plus-circle"></span>
+                    Ajouter une video
+                </a>
+            </div>
+            {% for video in form.videos %}
+                {{ formMacro.customVideoRow(video) }}
+            {% endfor %}
+        </div><!--/.wrapper-video-->
+    </div>
+</div>
+
+{# Images #}
+<div class="row">
+    <div class="col-12 col-sm-12 offset-md-2 col-md-8">
+
+        <div class="form-row col-12 wrapper-image"
+             data-prototype="{{ formMacro.customImageRow(form.images.vars.prototype)|e('html_attr') }}"
+             data-index="{{ form.images|length }}"
+        >
+
+            <div class="col-12 mb-2">
+                <a href="#" class="image-add">
+                    <span class="fa fa-plus-circle"></span>
+                    Ajouter une image
+                </a>
+            </div>
+
+            {% for image in form.images %}
+                {{ formMacro.customImageRow(image) }}
+            {% endfor %}
+        </div><!--/.wrapper-image-->
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-sm-12 offset-md-2 col-md-8">
+        <div class="col-12">
+            <button type="submit" class="btn btn_custom mt-2" data-url="{{ path('add_trick') }}">
+                Rajouter
+            </button>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

@@ -2,8 +2,6 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
-{% import 'app/CRUD/macro/custom_form.html.twig' as formMacro %}
-
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/form_trick.css') }}">
 {% endblock %}
@@ -12,90 +10,29 @@
 {% block body %}
     <div class="container mt-4">
 
-        {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'trick'}}) }}
-
-        <div class="form-row">
-            <div class="col-12">
-                <div class="col-md-12 page-header">
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-2 col-md-8">
+                <div class="col-12 custom_title">
                     <h4>Ajouter une figure</h4>
                 </div>
             </div>
         </div>
 
-        <div class="form-row">
-            <div class="col-md-12">
-                <div class="col-md-12 form-group">
-                    {# Title #}
-                    {{ form_row(form.title) }}
-                </div>
-
-                <div class="col-md-12 form-group">
-                    {# Description #}
-                    {{ form_row(form.description) }}
-                </div>
-
-                <div class="col-md-12 form-group">
-                    {# Category #}
-                    {{ form_row(form.category) }}
-                </div>
-            </div>
-        </div>
-
-        {# videos #}
-        <div class="form-row">
-            <div class="col-md-12">
-
-                <div class="form-row col-12 wrapper-video"
-                     data-prototype="{{ formMacro.customVideoRow(form.videos.vars.prototype)|e('html_attr') }}"
-                     data-index="{{ form.videos|length }}"
-                >
-                    <div class="col-12">
-                        <a href="#" class="video-add">
-                            <span class="fa fa-plus-circle"></span>
-                            Ajouter une video
-                        </a>
+        <div class="row">
+            <div class="col-12 col-sm-12 offset-md-2 col-md-8">
+                <div class="col-12">
+                    <div class="alert alert-success js-rep-success">
+                        La figure à été rajouter avec succès.
                     </div>
-
-                    {% for video in form.videos %}
-                        {{ formMacro.customVideoRow(video) }}
-                    {% endfor %}
-
                 </div>
             </div>
         </div>
 
-        {# Images #}
-        <div class="form-row">
-            <div class="col-md-12">
 
-                <div class="form-row col-12 wrapper-image"
-                     data-prototype="{{ formMacro.customImageRow(form.images.vars.prototype)|e('html_attr') }}"
-                     data-index="{{ form.images|length }}"
-                >
+        {{ include('app/CRUD/form_trick.html.twig') }}
 
-                    <div class="col-12">
-                        <a href="#" class="image-add">
-                            <span class="fa fa-plus-circle"></span>
-                            Ajouter une image
-                        </a>
-                    </div>
-                    {{ form_errors(form.images) }}
 
-                    {% for image in form.images %}
-                        {{ formMacro.customImageRow(image) }}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
 
-        <div class="form-row">
-            <div class="col-12" style="margin-left:15px;">
-                <button type="submit" class="btn-secondary btn mt-2">
-                    Rajouter
-                </button>
-            </div>
-        </div>
-        {{ form_end(form) }}
     </div>
 {% endblock %}
 

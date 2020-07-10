@@ -1,25 +1,17 @@
-/* header */
-.page-header {
-    color: #5a5a5a;
-}
-.page-header h4 {
-    border-bottom: 1px solid #eeeeee;
-    padding-bottom: 25px;
-    margin: 20px 0 30px;
-}
-
 /* image */
 .trick .label-file img {
     width: 100%;
     height: auto;
 }
-
+.trick .error_form-group {
+    border: 1px red solid;
+}
 .image-container label  {
     display: flex;
     align-items: center;
 }
 .trick .custom-file {
-    /*display: none;*/
+    display: none;
 }
 .trick .label-file {
     cursor: pointer;
@@ -30,6 +22,14 @@
 .image-container .form-control {
     padding-bottom: 0.5rem;
     height: auto;
+}
+.image-container .remove-image {
+    cursor: pointer;
+    color: #3b5998;
+}
+
+.js-rep-success {
+    display: none;
 }
 
 /* image-uploaded */
@@ -43,8 +43,10 @@
     display:none;
 }
 
-/* Video */
-.video-container .remove-video {
-    border-radius: 0 3px 3px 0 !important;
+/* Button Video & Image */
+.video-add, .video-add:hover, .image-add, .image-add:hover {
+    color: #d2691e;
 }
+
+
 

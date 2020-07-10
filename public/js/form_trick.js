@@ -1,6 +1,7 @@
 let $imageWrapper = $('.wrapper-image');
 let $videoWrapper = $('.wrapper-video');
 
+
 /* -------------------------- Video -------------------------- */
 
 // Evenemnt click pour supprimer un Form Video
@@ -11,6 +12,7 @@ $(document).on('click', '.remove-video', function(e) {
 });
 
 // Evenement click pour ajouter un form Video
+
 $(document).on('click', '.video-add', function(e) {
     e.preventDefault();
     let prototype = $videoWrapper.data('prototype');
@@ -36,16 +38,16 @@ $(document).on('click', '.image-add', function(e) {
     $(this).parent().after(newFormImage);
 });
 
-/* Evenemnt click pour supprimer un form */
-$(document).on('click', '.fa-trash', function(e) {
+/* Evenemnt click pour supprimer un form image */
+$(document).on('click', '.image_action-delete', function(e) {
     e.preventDefault();
     let deleteForm = $(this).closest($(".image-container"));
     deleteForm.remove();
 });
 
 /* Mise à jour de l'image dans le label */
-$(document).on("change", ":input[type=file]", function () {
-    let input = this;
+$(document).on("change", ":input[type=file]", function (e) {
+    let input = e.target;
 
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -71,8 +73,6 @@ $(document).ready(function() {
                 let $messageDelete = $('.image-delete-message');
                 $messageDelete.text(response.message);
                 $messageDelete.show("slow").delay(4000).hide("slow");
-                console.log(response);
-                console.log(xhr);
             }
         });
 

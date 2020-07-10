@@ -1,36 +1,39 @@
-{% macro customImageRow(image) %}
-
-    {% set path = "image/default-image.jpg" %}
-    {% set alt = "default-image" %}
-
-    {{ form_errors(image) }}
-
-    <div class="col-6 col-sm-4 col-md-3 image-container image-reader">
-        {{ form_widget(image) }}
-        <div class="form-control form-group">
-            <label for="{{ image.vars.id }}_file" class="label-file">
-                <img src="{{ asset( path ) }}" alt="{{ alt }}" class="img-fluid">
-            </label>
-            <div class="d-flex justify-content-around image-action">
-                <i class="fas fa-trash fa-lg"></i>
+{% macro customVideoRow(video) %}
+    <div class="row">
+        <div class="col-12 video-container">
+            {{ form_label(video.url) }}
+            <div class="row form-group">
+                <div class="col-12">
+                    <div class="input-group">
+                        {{ form_widget(video.url) }}
+                        <div class="input-group-prepend">
+                            <a href="#" class="remove-video btn btn_custom rounded-right">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 {% endmacro %}
 
-{% macro customVideoRow(video) %}
-    <div class="col-12 video-container">
-        {{ form_label(video.url) }}
-        <div class="form-row form-group">
-            <div class="col-12">
-                <div class="input-group">
-                    {{ form_widget(video.url) }}
-                    <div class="input-group-prepend">
-                        <a href="#" class="remove-video btn btn-secondary">
-                            <i class="fas fa-times"></i>
-                        </a>
-                    </div>
-                </div>
+{% macro customImageRow(image) %}
+    <div class="col-6 col-sm-4 col-md-4 image-container image-reader">
+        <div class="form-control form-group{% if form_errors(image.file) %} error_form-group {% endif %}">
+
+            {{ form_widget(image.file) }}
+
+            <label for="{{ image.vars.id }}_file" class="label-file">
+                <img src="{{ asset('image/default-image.jpg') }}" alt="default-image" class="rounded img-fluid">
+            </label>
+
+            <div class="justify-content-center error-image">
+                {{ form_errors(image.file) }}
+            </div>
+
+            <div class="d-flex justify-content-center mt-2">
+                <i class="fas fa-trash fa-lg remove-image"></i>
             </div>
         </div>
     </div>

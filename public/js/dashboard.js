@@ -19,7 +19,7 @@ $(document).on('submit', 'form', function(e){
     $form.ajaxSubmit({
         type: 'post',
         success: function(data, textStatus, jqxhr) {
-            if (jqxhr.status === 200) {
+            if (data === 'success') {
                 modal.modal('toggle');
                 location.reload();
             } else {
